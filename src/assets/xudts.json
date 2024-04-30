@@ -1,0 +1,17 @@
+{
+    "seal": {
+        "name": "Seal",
+        "symbol": "SEAL",
+        "meta": ""
+    },
+    "rgb++": {
+        "name": "RGB++",
+        "symbol": "RGB++",
+        "meta": ""
+    },
+    "bnb": {
+        "name": "BNB",
+        "symbol": "BNB",
+        "meta": ""
+    }
+}

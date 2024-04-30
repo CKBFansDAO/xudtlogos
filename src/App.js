@@ -1,6 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
+import xudts from './assets/xudts.json'
 
+console.log(xudts);
 function App() {
   return (
     <div className="App">
