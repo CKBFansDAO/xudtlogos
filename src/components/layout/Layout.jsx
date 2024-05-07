@@ -7,7 +7,7 @@ const Layout = () => {
     return (
         <div className='flex flex-col min-h-screen'>
             <TopNav />
-            <div className="flex grow w-full bg-[#17191D] text-[#FFF] min-w-full">
+            <div className="flex grow w-full bg-[#] text-[#] min-w-full">
                 <MainView />
                 {/*<MaintenancePage></MaintenancePage>*/}
             </div>
