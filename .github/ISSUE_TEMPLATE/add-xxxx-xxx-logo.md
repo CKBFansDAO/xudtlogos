@@ -2,8 +2,8 @@
 name: Add xxxx-xxx Logo
 about: Add xxxx project's xxx logo to xudtlogos.
 title: "[REQ]Add Nervos Network - CKB logo "
-labels: ''
-assignees: ''
+labels: new logo
+assignees: yixyxiu
 
 ---
 
