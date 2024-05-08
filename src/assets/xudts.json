@@ -4,29 +4,14 @@
         "symbol": "SEAL",
         "meta": ""
     },
-    "rgb++": {
-        "name": "RGB++",
-        "symbol": "RGB++",
+    "memes": {
+        "name": "Memes",
+        "symbol": "MEMES",
         "meta": ""
     },
-    "bnb": {
-        "name": "BNB",
-        "symbol": "BNB",
-        "meta": ""
-    },
-    "seal1": {
-        "name": "Seal",
-        "symbol": "SEAL",
-        "meta": ""
-    },
-    "rgb++1": {
-        "name": "RGB++",
-        "symbol": "RGB++",
-        "meta": ""
-    },
-    "bnb1": {
-        "name": "BNB",
-        "symbol": "BNB",
+    "memes1": {
+        "name": "Memes",
+        "symbol": "MEMES",
         "meta": ""
     }
 }

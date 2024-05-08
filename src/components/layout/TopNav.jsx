@@ -45,7 +45,7 @@ const TopNav = () => {
     }
 
     const renderNavBar = () => {
-        return <div className='flex gap-4 py-4 text-white w-full pr-5 px-5 md:px-10 items-center text-[24px]'>
+        return <div className='flex title gap-4 py-4 text-white w-full pr-5 px-5 md:px-10 items-center text-[18px] md:text-[20px]'>
             <Link to='/' className={`flex items-center h-[60px] px-2 cursor-pointer hover:text-color-second border-color-main ${curMainTab == '' ? 'border-b-[2px] text-color-main' : 'text-[#FFF]'} `}
             onClick={() => setCurMainTab('')}>
                 xUDT Logos
