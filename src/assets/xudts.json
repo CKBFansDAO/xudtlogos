@@ -9,9 +9,9 @@
         "symbol": "MEMES",
         "meta": ""
     },
-    "memes1": {
-        "name": "Memes",
-        "symbol": "MEMES",
+    "last1": {
+        "name": "Last1 Test Token",
+        "symbol": "LAST1",
         "meta": ""
     }
 }

@@ -36,7 +36,7 @@ const SvgXudtLogoContainer = ({ symbol }) => {
         <div className='flex flex-col md:flex-row gap-5 md:gap-10'>
 
             <div className='w-60 h-60 rounded-md border border-[#aaa] flex items-center justify-center'>
-                <XudtLogoLoader name={symbol} ></XudtLogoLoader>
+                <XudtLogoLoader symbol={symbol} ></XudtLogoLoader>
             </div>
 
             <div className='flex flex-col gap-10 place-content-center'>
