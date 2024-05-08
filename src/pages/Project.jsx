@@ -1,7 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import xudts from '../assets/xudts.json'
-import XudtLogoLoader from '../components/XudtLogoLoader';
 import PngXudtLogoContainer from '../components/PngXudtLogoContainer';
 import SvgXudtLogoContainer from '../components/SvgXudtLogoContainer';
 
@@ -25,30 +24,30 @@ const Project = () => {
 
     const renderMainView = () => {
         return <div className='flex flex-col gap-10'>
-            <span className='text-3xl title'>{`${info.name} (${info.symbol}) PNG and SVG Logo Download`}</span>
-            <div className='flex flex-wrap gap-10 md:gap-28'>
+            <span className='text-xl title text-color-maintext'>{`${info.name} (${info.symbol}) PNG and SVG Logo Download`}</span>
+            <div className='flex flex-wrap gap-10 md:gap-15'>
                 <PngXudtLogoContainer symbol={symbol}></PngXudtLogoContainer>
                 <SvgXudtLogoContainer symbol={symbol}></SvgXudtLogoContainer>
 
             </div>
 
-            <div className='flex flex-col gap-5'>
+            <div className='flex flex-col gap-5 mt-10'>
                 <span className='title text-3xl md:mb-5'>Contribute</span>
                 <p> You can submit a new xUDT asset logo to xudtlogs by creating a new pull request to our github repository. </p>
                 <p> Alternatively, if you are the owner of the brand, and if the logo is presented or being used in a wrong way, you can request the logo to be removed. </p>
-                <a className='font-bold text-center rounded w-40 py-2 bg-color-main text-white' href={`https://github.com/CKBFansDAO/xudtlogos/pulls`} target="_blank">Submit</a>
+                <a className='font-bold text-center rounded w-40 py-2 bg-color-maintext text-white' href={`https://github.com/CKBFansDAO/xudtlogos/issues/new?assignees=yixyxiu&labels=new+logo&projects=&template=add-xxxx-xxx-logo.md&title=%5BREQ%5DAdd+Nervos+Network+-+CKB+logo+`} target="_blank" rel="noopener noreferrer">Submit</a>
             </div>
 
             <div>
                 <p> If you value the xUDT Logos project and would like to help us continue our efforts, please consider supporting us with a &nbsp;
-                    <a href="" target="_blank" class="underline">donation</a>.
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="underline text-color-main">donation</a>.
                 </p>
             </div>
         </div>
     }
 
     return (
-        <div className='flex flex-col py-10 gap-10'>
+        <div className='flex flex-col py-14 gap-10'>
             {!info && <>404</>}
             {info && renderMainView()}
         </div>

@@ -7,7 +7,7 @@ import About from '../../pages/About';
 
 const MainView = () => {
     return (
-        <div className='w-full flex justify-center pt-[60px] px-5 md:px-10'>
+        <div className='w-full flex justify-center pt-[60px] px-5 md:px-10 max-w-[960px]'>
             <Routes>
                 <Route path='/' exact element={<Home />} />
                 <Route path='/faq' exact element={<Faqs />} />

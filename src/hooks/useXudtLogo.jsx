@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const useXudtLogo = ({symbol, logoType}) => {
     const [loaded, setLoaded] = useState(false);

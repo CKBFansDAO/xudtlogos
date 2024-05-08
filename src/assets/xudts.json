@@ -2,16 +2,16 @@
     "seal": {
         "name": "Seal",
         "symbol": "SEAL",
-        "meta": ""
+        "website": ""
     },
     "memes": {
         "name": "Memes",
         "symbol": "MEMES",
-        "meta": ""
+        "website": ""
     },
     "last1": {
         "name": "Last1 Test Token",
         "symbol": "LAST1",
-        "meta": ""
+        "website": ""
     }
 }
