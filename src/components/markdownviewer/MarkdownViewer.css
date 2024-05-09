@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Zen+Dots&display=swap');
+
+* {
+    --color-border-muted: #d0d7de;
+}
+
+.markdown-body {
+    font-family: 'Space Grotesk', 'Space Mono';
+    --color-canvas-default: #FFFFFF;
+    --color-fg-default: #24292f;
+}
+
+.markdown-body pre code{
+    font-family: 'Space Grotesk', 'Space Mono';
+    font-size: 16px;
+}
+
+.wmde-markdown {
+    font-family: 'Space Grotesk', 'Space Mono';
+    --color-canvas-default: #FFFFFF;
+    --color-fg-default: #24292f;
+}
+
+
+.markdown-body th {
+    background-color: #D8CFF4;
+}
+
+.markdown-body table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.markdown-body table th, .markdown-body table td {
+    border-color: #AFA8C7;
+}
+
+.markdown-body table tr:nth-child(2n) {
+    background-color: #EBE6FF;
+}
+
+.markdown-body table tr {
+    background-color: #f7f5f400;
+    border-top: 1px solid var(--color-border-muted);
+}
+
+.markdown-body a {
+    color: #28C1B0;
+}
+
+.markdown-body p {
+    line-height: 32px;
+}
+
+.markdown-body p, .markdown-body blockquote, .markdown-body ul, .markdown-body ol, .markdown-body dl, .markdown-body table, .markdown-body pre, .markdown-body details {
+    margin-top: 0;
+    margin-bottom: 32px;
+}
+
+.markdown-container {
+    position: relative;
+    /* 其他样式属性 */
+}
