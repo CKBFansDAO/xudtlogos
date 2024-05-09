@@ -42,14 +42,14 @@ const Project = () => {
 
             <div className='flex flex-col gap-5 mt-10'>
                 <span className='title text-3xl md:mb-5'>Contribute</span>
-                <p> You can submit a new xUDT asset logo to xudtlogos by creating a new pull request to our github repository. </p>
+                <p> You can submit a new xUDT asset logo to xudtlogos by creating a new pull request to our github repository, also by creating an new issue. </p>
                 <p> Alternatively, if you are the owner of the brand, and if the logo is presented or being used in a wrong way, you can request the logo to be removed. </p>
-                <a className='font-bold text-center rounded w-40 py-2 bg-color-maintext text-white' href={`https://github.com/CKBFansDAO/xudtlogos/issues/new?assignees=yixyxiu&labels=new+logo&projects=&template=add-xxxx-xxx-logo.md&title=%5BREQ%5DAdd+Nervos+Network+-+CKB+logo+`} target="_blank" rel="noopener noreferrer">Submit</a>
+                <a className='font-bold text-center rounded w-40 py-2 bg-color-maintext text-white' href={`https://github.com/CKBFansDAO/xudtlogos/issues/new?assignees=yixyxiu&labels=new+logo&projects=&template=add-xxxx-xxx-logo.md&title=%5BREQ%5DAdd+Nervos+Network+-+CKB+logo+`} target="_blank" rel="noopener noreferrer">Submit new Logo</a>
             </div>
 
             <div>
                 <p> If you value the xUDT Logos project and would like to help us continue our efforts, please consider supporting us with a &nbsp;
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="underline text-color-main">donation</a>.
+                    <span class="text-color-main font-semibold">donation</span>: ckb1qzda0cr08m85hc8jlnfp3zer7xulejywt49kt2rr0vthywaa50xwsqddfkm2dxu807jw87smd0fwfc2rs35lx9gqm9wqv
                 </p>
             </div>
         </div>
