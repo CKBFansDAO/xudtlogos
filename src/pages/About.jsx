@@ -32,7 +32,7 @@ const About = () => {
                     <div className='w-3 h-3 place-self-center'>
                         <div className='w-2 h-2 bg-black rounded-full '></div>
                     </div>
-                    <span> <span className='title'>Automatic Deployment and Display:</span> Once logos are uploaded and approved, the system will automatically deploy them to the public website xudtlogs.cc, making it convenient for DApp developers and users to access and use them.</span>
+                    <span> <span className='title'>Automatic Deployment and Display:</span> Once logos are uploaded and approved, the system will automatically deploy them to the public website xudtlogos.cc, making it convenient for DApp developers and users to access and use them.</span>
                 </div>
                 <div className='flex gap-5'>
                     <div className='w-3 h-3 place-self-center'>

@@ -6,7 +6,7 @@ With the continuous increase of xUDT assets on CKB, the need to display asset lo
 
 - Unified Logo Management Platform: xudtlogos will provide a unified online platform where xUDT project owners can upload and manage their token logos according to specifications.
 - Open Source Collaboration Model: The project will adopt an open source collaboration model, welcoming community members and xUDT project owners to participate in logo upload and maintenance work.
-- Automatic Deployment and Display: Once logos are uploaded and approved, the system will automatically deploy them to the public website xudtlogs.cc, making it convenient for DApp developers and users to access and use them.
+- Automatic Deployment and Display: Once logos are uploaded and approved, the system will automatically deploy them to the public website xudtlogos.cc, making it convenient for DApp developers and users to access and use them.
 - Standardized Management: xudtlogos will establish a set of standards to ensure that uploaded logos meet uniform size, format, and quality requirements, improving display effectiveness and user experience.
 
 ## Expected Outcomes
