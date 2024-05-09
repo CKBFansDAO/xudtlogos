@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import xudts from '../assets/xudts.json'
 import PngXudtLogoContainer from '../components/PngXudtLogoContainer';
 import SvgXudtLogoContainer from '../components/SvgXudtLogoContainer';
@@ -21,6 +21,15 @@ const Project = () => {
     }
 
     const info = getProject();
+
+    const render404 = () => {
+        return <div className='flex flex-col gap-3 h-full items-center justify-center'>
+            <span className='title text-7xl text-color-maintext mb-2'>404</span>
+            <span>Your logo is lost or someone has stolen it,</span>
+            <span>please return to the main page</span>
+            <Link to={'/'} className='flex items-center text-center px-10 py-2 bg-color-maintext rounded-md text-white'>Go Home</Link>
+        </div>
+    }
 
     const renderMainView = () => {
         return <div className='flex flex-col gap-10'>
@@ -48,7 +57,7 @@ const Project = () => {
 
     return (
         <div className='flex flex-col py-14 gap-10'>
-            {!info && <>404</>}
+            {!info && render404()}
             {info && renderMainView()}
         </div>
     );
