@@ -9,9 +9,9 @@
         "symbol": "MEMES",
         "website": ""
     },
-    "last1": {
-        "name": "Last1 Test Token",
-        "symbol": "LAST1",
+    "otter": {
+        "name": "Otter",
+        "symbol": "OTTER",
         "website": ""
     }
 }
