@@ -1,0 +1,81 @@
+{
+    "tokens": [
+        {
+            "name": "ccBTC",
+            "symbol": "BTC",
+            "logo": "https://xudtlogos.cc/logos/ccbtc-logo.png",
+            "decimals": 8,
+            "typeHash": "0x3cd44aecea36e0a27e671f1fc79e65add7bf2f0e8b368389dc810ec81c63fa57",
+            "cmcId": "1",
+            "typeScript": {
+                "args": "0x68e64ba4b0daeeec45c1f983d6d574fca370442cafb805bc4265ef74870a4ac8",
+                "codeHash": "0x092c2c4a26ea475a8e860c29cf00502103add677705e2ccd8d6fe5af3caa5ae3",
+                "hashType": "type"
+            },
+            "typeCellDep": {
+                "outPoint": {
+                    "txHash": "0x3ceb520f240b168e0bddf0d89b4bcabbe7d4fa69751057cbe8e4f27239fad0e9",
+                    "index": 0
+                },
+                "depType": "code"
+            }
+        },
+        {
+            "logo": "https://xudtlogos.cc/logos/seal-logo.png",
+            "decimals": 8,
+            "name": "Seal",
+            "symbol": "Seal",
+            "typeHash": "0x178fb47b597a56d48b549226aff59f750b4784250c7f40f781b64ef090a8a0a7",
+            "typeScript": {
+                "args": "0x2ae639d6233f9b15545573b8e78f38ff7aa6c7bf8ef6460bf1f12d0a76c09c4e",
+                "codeHash": "0x50bd8d6680b8b9cf98b73f3c08faf8b2a21914311954118ad6609be6e78a1b95",
+                "hashType": "data1"
+            },
+            "typeCellDep": {
+                "outPoint": {
+                    "txHash": "0xc07844ce21b38e4b071dd0e1ee3b0e27afd8d7532491327f39b786343f558ab7",
+                    "index": 0
+                },
+                "depType": "code"
+            }
+        },
+        {
+            "logo": "https://xudtlogos.cc/logos/cat++-logo.png",
+            "decimals": 8,
+            "name": "RGBCAT",
+            "symbol": "CAT++",
+            "typeHash": "0xd3398f476413dde2653b13f08debe9983d5746b4303e9108f79648711608ccb0",
+            "typeScript": {
+                "args": "0x26f72274077d39aca09f75e09e41ff9daa67c1bf59d30d19e1f52d3fc226209b",
+                "codeHash": "0x50bd8d6680b8b9cf98b73f3c08faf8b2a21914311954118ad6609be6e78a1b95",
+                "hashType": "data1"
+            },
+            "typeCellDep": {
+                "outPoint": {
+                    "txHash": "0xc07844ce21b38e4b071dd0e1ee3b0e27afd8d7532491327f39b786343f558ab7",
+                    "index": 0
+                },
+                "depType": "code"
+            }
+        },
+        {
+            "logo": "https://xudtlogos.cc/logos/otter-logo.png",
+            "decimals": 8,
+            "name": "@PalofSeal",
+            "symbol": "Otter",
+            "typeHash": "0x7aa08eb97ac10170b60666b7494af5692757bb23e1a89a2afea3d0172cdcff50",
+            "typeScript": {
+                "args": "0x0a5c9645b871a28af6d8040ff43a8ea62a6f12a4c131c0bbdc3a20a0e46ff292",
+                "codeHash": "0x50bd8d6680b8b9cf98b73f3c08faf8b2a21914311954118ad6609be6e78a1b95",
+                "hashType": "data1"
+            },
+            "typeCellDep": {
+                "outPoint": {
+                    "txHash": "0xc07844ce21b38e4b071dd0e1ee3b0e27afd8d7532491327f39b786343f558ab7",
+                    "index": 0
+                },
+                "depType": "code"
+            }
+        }
+    ]
+}
