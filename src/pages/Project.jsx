@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import xudts from '../assets/xudts.json'
 import PngXudtLogoContainer from '../components/PngXudtLogoContainer';
 import SvgXudtLogoContainer from '../components/SvgXudtLogoContainer';
+import useXudtProject from '../hooks/useXudtProject';
 
 const Project = () => {
-
     const params = useParams()
     const symbol = params.xudt;
+    //const {isLoading, isError, xudtInfo: info} = useXudtProject(symbol);
 
     const getProject = () => {
         // 检查输入的项目名称是否在数据结构中存在
@@ -21,6 +22,16 @@ const Project = () => {
     }
 
     const info = getProject();
+
+    useEffect(() => {
+        
+    }, [symbol]);
+
+    const renderLoading = () => {
+        <div className='flex flex-col gap-3 h-full items-center justify-center'>
+            Loading...
+        </div>
+    }
 
     const render404 = () => {
         return <div className='flex flex-col gap-3 h-full items-center justify-center'>
@@ -54,6 +65,11 @@ const Project = () => {
             </div>
         </div>
     }
+
+    /*
+    if (isLoading) {
+        return renderLoading()
+    }*/
 
     return (
         <div className='flex flex-col py-14 gap-10'>

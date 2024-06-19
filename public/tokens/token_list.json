@@ -18,6 +18,17 @@
                     "index": 0
                 },
                 "depType": "code"
+            },
+            "extensions": {
+                "links":{
+                    "official":"https://www.mycactus.com/",
+                    "twitter":"",
+                    "discord":"",
+                    "telegram":"",
+                    "github":"",
+                    "medium":"",
+                    "youtube":"" 
+                }
             }
         },
         {
@@ -37,6 +48,17 @@
                     "index": 0
                 },
                 "depType": "code"
+            },
+            "extensions": {
+                "links":{
+                    "official":"",
+                    "twitter":"https://x.com/btckbseal",
+                    "discord":"",
+                    "telegram":"https://t.me/sealrgbpp",
+                    "github":"",
+                    "medium":"",
+                    "youtube":"" 
+                }
             }
         },
         {
@@ -56,6 +78,17 @@
                     "index": 0
                 },
                 "depType": "code"
+            },
+            "extensions": {
+                "links":{
+                    "official":"https://www.rgbcat.io",
+                    "twitter":"https://twitter.com/rgbcat_io",
+                    "discord":"",
+                    "telegram":"https://t.me/rgbcat_io",
+                    "github":"",
+                    "medium":"",
+                    "youtube":"" 
+                }
             }
         },
         {
@@ -75,6 +108,17 @@
                     "index": 0
                 },
                 "depType": "code"
+            },
+            "extensions": {
+                "links":{
+                    "official":"",
+                    "twitter":"",
+                    "discord":"",
+                    "telegram":"",
+                    "github":"",
+                    "medium":"",
+                    "youtube":"" 
+                }
             }
         }
     ]
