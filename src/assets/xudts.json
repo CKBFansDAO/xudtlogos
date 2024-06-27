@@ -1,17 +1,18 @@
 {
+    "ccbtc":{
+        "name": "ccBTC",
+        "symbol": "BTC"
+    },
     "seal": {
         "name": "Seal",
-        "symbol": "SEAL",
-        "website": ""
+        "symbol": "SEAL"
     },
     "memes": {
         "name": "Memes",
-        "symbol": "MEMES",
-        "website": ""
+        "symbol": "MEMES"
     },
     "otter": {
         "name": "Otter",
-        "symbol": "OTTER",
-        "website": ""
+        "symbol": "OTTER"
     }
 }
