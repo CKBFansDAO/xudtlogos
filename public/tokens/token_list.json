@@ -150,6 +150,36 @@
                     "youtube":"" 
                 }
             }
+        },
+        {
+            "logo": "https://xudtlogos.cc/logos/memes-logo.png",
+            "decimals": 8,
+            "name": "MEMES",
+            "symbol": "Memes",
+            "typeHash": "0x105b91b6abe6ece687d4a906180d216904da322fe0d969713d35fc47d921da56",
+            "typeScript": {
+                "args": "0x0b95149deefb86a729b0b2794df23f8e6e03f1bce70651dbdeac3da8ebc32584",
+                "codeHash": "0x50bd8d6680b8b9cf98b73f3c08faf8b2a21914311954118ad6609be6e78a1b95",
+                "hashType": "data1"
+            },
+            "typeCellDep": {
+                "outPoint": {
+                    "txHash": "0xc07844ce21b38e4b071dd0e1ee3b0e27afd8d7532491327f39b786343f558ab7",
+                    "index": 0
+                },
+                "depType": "code"
+            },
+            "extensions": {
+                "links":{
+                    "official":"",
+                    "twitter":"",
+                    "discord":"",
+                    "telegram":"",
+                    "github":"",
+                    "medium":"",
+                    "youtube":"" 
+                }
+            }
         }
     ]
 }
