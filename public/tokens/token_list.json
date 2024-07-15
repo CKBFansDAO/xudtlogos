@@ -120,6 +120,36 @@
                     "youtube":"" 
                 }
             }
+        },
+        {
+            "logo": "https://xudtlogos.cc/logos/clown-logo.png",
+            "decimals": 8,
+            "name": "Clown",
+            "symbol": "Clown",
+            "typeHash": "0x3390b8cb174b5623fd72a2dc5af13ea428ff171573f500b0e796e1f7336bcabe",
+            "typeScript": {
+                "args": "0xcf20e5a9a4a7be6806979b38e17dbc6f9d2355c0c540f4378a11d2bbf506fa2c",
+                "codeHash": "0x50bd8d6680b8b9cf98b73f3c08faf8b2a21914311954118ad6609be6e78a1b95",
+                "hashType": "data1"
+            },
+            "typeCellDep": {
+                "outPoint": {
+                    "txHash": "0xc07844ce21b38e4b071dd0e1ee3b0e27afd8d7532491327f39b786343f558ab7",
+                    "index": 0
+                },
+                "depType": "code"
+            },
+            "extensions": {
+                "links":{
+                    "official":"",
+                    "twitter":"https://x.com/clown_rgbpp",
+                    "discord":"",
+                    "telegram":"",
+                    "github":"",
+                    "medium":"",
+                    "youtube":"" 
+                }
+            }
         }
     ]
 }
