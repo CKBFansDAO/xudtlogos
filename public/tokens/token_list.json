@@ -180,6 +180,36 @@
                     "youtube":"" 
                 }
             }
+        },
+        {
+            "logo": "https://xudtlogos.cc/logos/girl-logo.png",
+            "decimals": 8,
+            "name": "Girl",
+            "symbol": "Girl",
+            "typeHash": "0xd53f7fe2b8b62bfe08f69016398928f37a028fe962279d7fe7ad8e466dd02765",
+            "typeScript": {
+                "args": "0xc750bcf7e97690994a05a00832a3a17d35740abe302371530ca91f9c866a721f",
+                "codeHash": "0x50bd8d6680b8b9cf98b73f3c08faf8b2a21914311954118ad6609be6e78a1b95",
+                "hashType": "data1"
+            },
+            "typeCellDep": {
+                "outPoint": {
+                    "txHash": "0xc07844ce21b38e4b071dd0e1ee3b0e27afd8d7532491327f39b786343f558ab7",
+                    "index": 0
+                },
+                "depType": "code"
+            },
+            "extensions": {
+                "links":{
+                    "official":"",
+                    "twitter":"https://x.com/girlsrgbpp",
+                    "discord":"",
+                    "telegram":"",
+                    "github":"",
+                    "medium":"",
+                    "youtube":"" 
+                }
+            }
         }
     ]
 }
