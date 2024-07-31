@@ -18,5 +18,9 @@
     "otter": {
         "name": "Otter",
         "symbol": "OTTER"
+    },
+    "girl": {
+        "name": "Girl",
+        "symbol": "Girl"
     }
 }
