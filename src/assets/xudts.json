@@ -22,5 +22,13 @@
     "girl": {
         "name": "Girl",
         "symbol": "Girl"
+    },
+    "candy": {
+        "name": "CANDY",
+        "symbol": "CANDY"
+    },
+    "beaf": {
+        "name": "BEAF",
+        "symbol": "BEAF"
     }
 }

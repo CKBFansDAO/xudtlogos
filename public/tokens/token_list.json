@@ -210,6 +210,66 @@
                     "youtube":"" 
                 }
             }
+        },
+        {
+            "logo": "https://xudtlogos.cc/logos/candy-logo.png",
+            "decimals": 8,
+            "name": "CANDY",
+            "symbol": "CANDY",
+            "typeHash": "0x667776d1ea35d9e446c957f0394741303e40f8aada7f14eb8e1f33c707fcddfd",
+            "typeScript": {
+                "args": "0x7bc80c21281897e98217a22ba52d266b91264da873cfcaf473eb93e0b5c038dd",
+                "codeHash": "0x50bd8d6680b8b9cf98b73f3c08faf8b2a21914311954118ad6609be6e78a1b95",
+                "hashType": "data1"
+            },
+            "typeCellDep": {
+                "outPoint": {
+                    "txHash": "0xc07844ce21b38e4b071dd0e1ee3b0e27afd8d7532491327f39b786343f558ab7",
+                    "index": 0
+                },
+                "depType": "code"
+            },
+            "extensions": {
+                "links":{
+                    "official":"",
+                    "twitter":"https://x.com/candy_rgbpp",
+                    "discord":"",
+                    "telegram":"",
+                    "github":"",
+                    "medium":"",
+                    "youtube":"" 
+                }
+            }
+        },
+        {
+            "logo": "https://xudtlogos.cc/logos/beaf-logo.png",
+            "decimals": 8,
+            "name": "BEAF",
+            "symbol": "BEAF",
+            "typeHash": "0xfbd235ba8e5b1f8f7df6bd51e8756d52c05ef358d30e7bcfee8a73b6a9c185c9",
+            "typeScript": {
+                "args": "0xc639759e988445217e4c08b2e7b416082d9de0cb061194e2f7f35a89bb6fbf4f",
+                "codeHash": "0x50bd8d6680b8b9cf98b73f3c08faf8b2a21914311954118ad6609be6e78a1b95",
+                "hashType": "data1"
+            },
+            "typeCellDep": {
+                "outPoint": {
+                    "txHash": "0xc07844ce21b38e4b071dd0e1ee3b0e27afd8d7532491327f39b786343f558ab7",
+                    "index": 0
+                },
+                "depType": "code"
+            },
+            "extensions": {
+                "links":{
+                    "official":"https://www.beaftoken.com/",
+                    "twitter":"https://x.com/beaftoken",
+                    "discord":"",
+                    "telegram":"https://t.me/gotbeaf",
+                    "github":"",
+                    "medium":"",
+                    "youtube":"" 
+                }
+            }
         }
     ]
 }
