@@ -11,6 +11,10 @@
         "name": "Memes",
         "symbol": "MEMES"
     },
+    "stb": {
+        "name": "STB",
+        "symbol": "STB"
+    },
     "clown": {
         "name": "Clown",
         "symbol": "CLOWN"

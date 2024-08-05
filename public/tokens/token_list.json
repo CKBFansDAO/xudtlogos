@@ -270,6 +270,36 @@
                     "youtube":"" 
                 }
             }
+        },
+        {
+            "logo": "https://xudtlogos.cc/logos/stb-logo.png",
+            "decimals": 8,
+            "name": "STB",
+            "symbol": "STB",
+            "typeHash": "0x7aaab7f33ff85618e9b1d88f57dc5607554cfd5ae347f295b47bd1f16ae84a1a",
+            "typeScript": {
+                "args": "0xd7b5e6117759193f963b77aa255416e080c20fa041cca521f0141e48f7904999",
+                "codeHash": "0x50bd8d6680b8b9cf98b73f3c08faf8b2a21914311954118ad6609be6e78a1b95",
+                "hashType": "data1"
+            },
+            "typeCellDep": {
+                "outPoint": {
+                    "txHash": "0xc07844ce21b38e4b071dd0e1ee3b0e27afd8d7532491327f39b786343f558ab7",
+                    "index": 0
+                },
+                "depType": "code"
+            },
+            "extensions": {
+                "links":{
+                    "official":"https://www.stablepp.xyz/",
+                    "twitter":"https://twitter.com/stablepp",
+                    "discord":"https://discord.gg/uwnMswHrgj",
+                    "telegram":"https://t.me/Stablepp",
+                    "github":"https://github.com/stablepp",
+                    "medium":"https://medium.com/@Stablepp",
+                    "youtube":"" 
+                }
+            }
         }
     ]
 }
