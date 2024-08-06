@@ -19,9 +19,17 @@
         "name": "Clown",
         "symbol": "CLOWN"
     },
+    "rgb++": {
+        "name": "RGB++",
+        "symbol": "RGB++"
+    },
     "otter": {
         "name": "Otter",
         "symbol": "OTTER"
+    },
+    "cat++": {
+        "name": "CAT++",
+        "symbol": "CAT++"
     },
     "girl": {
         "name": "Girl",

@@ -300,6 +300,36 @@
                     "youtube":"" 
                 }
             }
+        },
+        {
+            "logo": "https://xudtlogos.cc/logos/rgb++-logo.png",
+            "decimals": 8,
+            "name": "RGB++",
+            "symbol": "RGB++",
+            "typeHash": "0xb5fdb4e8ad52f5e3ed4a294c01ca99f7811b06baef2e7fce5b7d4ebbf006717d",
+            "typeScript": {
+                "args": "0x08875c56644d39dd9629d291357d3026debc5d22fa88d924d60ce8f16dd50e70",
+                "codeHash": "0x50bd8d6680b8b9cf98b73f3c08faf8b2a21914311954118ad6609be6e78a1b95",
+                "hashType": "data1"
+            },
+            "typeCellDep": {
+                "outPoint": {
+                    "txHash": "0xc07844ce21b38e4b071dd0e1ee3b0e27afd8d7532491327f39b786343f558ab7",
+                    "index": 0
+                },
+                "depType": "code"
+            },
+            "extensions": {
+                "links":{
+                    "official":"https://rgbpp.vip",
+                    "twitter":"https://x.com/rgbppcoin",
+                    "discord":"",
+                    "telegram":"https://t.me/RGBplusplusCoin",
+                    "github":"",
+                    "medium":"",
+                    "youtube":"" 
+                }
+            }
         }
     ]
 }
