@@ -360,6 +360,36 @@
                     "youtube": ""
               }
             }
+        },
+        {
+            "logo": "https://xudtlogos.cc/logos/joker-logo.png",
+            "decimals": 8,
+            "name": "JOKER",
+            "symbol": "JOKER",
+            "typeHash": "0xa9ae2d1a2459f2ad0a590358a117aaa37b44cb58307c658ff2a72654c466e148",
+            "typeScript": {
+                "args": "0xcb74eaded089bf39c2165149cad3d526b4321e9a6119c7ae9cf996be3acfeb18",
+                "codeHash": "0x50bd8d6680b8b9cf98b73f3c08faf8b2a21914311954118ad6609be6e78a1b95",
+                "hashType": "data1"
+            },
+            "typeCellDep": {
+                "outPoint": {
+                    "txHash": "0xc07844ce21b38e4b071dd0e1ee3b0e27afd8d7532491327f39b786343f558ab7",
+                    "index": 0
+                },
+                "depType": "code"
+            },
+            "extensions": {
+                "links":{
+                    "official":"",
+                    "twitter":"https://x.com/eatingdao/status/1839531531808956432?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1839531531808956432%7Ctwgr%5E0919c38571e3d22281fabc464ee4905b2db5a358%7Ctwcon%5Es1_&ref_url=https%3A%2F%2Fckb.fi%2Fdetail%2F38",
+                    "discord":"",
+                    "telegram":"",
+                    "github":"",
+                    "medium":"",
+                    "youtube":"" 
+                }
+            }
         }
     ]
 }
