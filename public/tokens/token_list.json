@@ -390,6 +390,36 @@
                     "youtube":"" 
                 }
             }
+        },
+        {
+            "logo": "https://xudtlogos.cc/logos/baiyu-logo.png",
+            "decimals": 8,
+            "name": "BAIYU",
+            "symbol": "BAIYU",
+            "typeHash": "0xc4f2ff8cd6f2e53985c724a2a3dfbcfc7223eeac004514f45dcb38a82d38ee09",
+            "typeScript": {
+                "args": "0x24057e11adbd6db13e80c3bb3433135df5addb7dfe58c4cf4c01a36ebbfbec0f",
+                "codeHash": "0x50bd8d6680b8b9cf98b73f3c08faf8b2a21914311954118ad6609be6e78a1b95",
+                "hashType": "data1"
+            },
+            "typeCellDep": {
+                "outPoint": {
+                    "txHash": "0xc07844ce21b38e4b071dd0e1ee3b0e27afd8d7532491327f39b786343f558ab7",
+                    "index": 0
+                },
+                "depType": "code"
+            },
+            "extensions": {
+                "links":{
+                    "official":"",
+                    "twitter":"",
+                    "discord":"",
+                    "telegram":"",
+                    "github":"",
+                    "medium":"",
+                    "youtube":"" 
+                }
+            }
         }
     ]
 }
