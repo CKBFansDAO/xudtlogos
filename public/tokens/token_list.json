@@ -450,6 +450,36 @@
                     "youtube":"" 
                 }
             }
+        },
+        {
+            "logo": "https://xudtlogos.cc/logos/bitcat-logo.png",
+            "decimals": 8,
+            "name": "BITCAT",
+            "symbol": "BITCAT",
+            "typeHash": "0x9320a9f1a9bff385ed53449b5284b8d961c731945ad47ab270f3cb82c0795c19",
+            "typeScript": {
+                "args": "0x8b15a621bc7f91cfebc4e37e66fbe97ddee269694559a1d37eac9dfe06480721",
+                "codeHash": "0x50bd8d6680b8b9cf98b73f3c08faf8b2a21914311954118ad6609be6e78a1b95",
+                "hashType": "data1"
+            },
+            "typeCellDep": {
+                "outPoint": {
+                    "txHash": "0xc07844ce21b38e4b071dd0e1ee3b0e27afd8d7532491327f39b786343f558ab7",
+                    "index": 0
+                },
+                "depType": "code"
+            },
+            "extensions": {
+                "links":{
+                    "official":"",
+                    "twitter":"",
+                    "discord":"",
+                    "telegram":"",
+                    "github":"",
+                    "medium":"",
+                    "youtube":"" 
+                }
+            }
         }
     ]
 }
