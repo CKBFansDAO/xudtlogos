@@ -480,6 +480,36 @@
                     "youtube":"" 
                 }
             }
+        },
+        {
+            "logo": "https://xudtlogos.cc/logos/ickb-logo.png",
+            "decimals": 8,
+            "name": "iCKB",
+            "symbol": "iCKB",
+            "typeHash": "0xd485c2271949c232e3f5d46128336c716f90bcbf3cb278696083689fbbcd407a",
+            "typeScript": {
+                "args": "0xb73b6ab39d79390c6de90a09c96b290c331baf1798ed6f97aed02590929734e800000080",
+                "codeHash": "0x50bd8d6680b8b9cf98b73f3c08faf8b2a21914311954118ad6609be6e78a1b95",
+                "hashType": "data1"
+            },
+            "typeCellDep": {
+                "outPoint": {
+                    "txHash": "0xc07844ce21b38e4b071dd0e1ee3b0e27afd8d7532491327f39b786343f558ab7",
+                    "index": 0
+                },
+                "depType": "code"
+            },
+            "extensions": {
+                "links":{
+                    "official":"https://ickb.org/",
+                    "twitter":"",
+                    "discord":"",
+                    "telegram":"https://t.me/NervosNation/307406",
+                    "github":"https://github.com/ickb",
+                    "medium":"",
+                    "youtube":"" 
+                }
+            }
         }
     ]
 }
