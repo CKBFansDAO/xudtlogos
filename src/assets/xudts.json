@@ -19,6 +19,10 @@
         "name": "STB",
         "symbol": "STB"
     },
+    "rusd": {
+        "name": "RUSD",
+        "symbol": "RUSD"
+    },
     "clown": {
         "name": "Clown",
         "symbol": "CLOWN"
