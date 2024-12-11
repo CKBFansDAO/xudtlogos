@@ -510,6 +510,36 @@
                     "youtube":"" 
                 }
             }
+        },
+        {
+            "logo": "https://xudtlogos.cc/logos/bank-logo.png",
+            "decimals": 8,
+            "name": "BANK",
+            "symbol": "BANK",
+            "typeHash": "0x73b7266e3500db7c5def31d1d8a112e86fa5c59d83f222486913836704cee3f4",
+            "typeScript": {
+                "args": "0x3046219b8dd69e0513691568ea438ac6a2a356c0f2695f98a8aed3cc03a1061a",
+                "codeHash": "0x50bd8d6680b8b9cf98b73f3c08faf8b2a21914311954118ad6609be6e78a1b95",
+                "hashType": "data1"
+            },
+            "typeCellDep": {
+                "outPoint": {
+                    "txHash": "0xc07844ce21b38e4b071dd0e1ee3b0e27afd8d7532491327f39b786343f558ab7",
+                    "index": 0
+                },
+                "depType": "code"
+            },
+            "extensions": {
+                "links":{
+                    "official":"",
+                    "twitter":"",
+                    "discord":"",
+                    "telegram":"",
+                    "github":"",
+                    "medium":"",
+                    "youtube":"" 
+                }
+            }
         }
     ]
 }
