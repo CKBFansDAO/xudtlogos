@@ -540,6 +540,36 @@
                     "youtube":"" 
                 }
             }
+        },
+        {
+            "logo": "https://xudtlogos.cc/logos/usdi-logo.svg",
+            "decimals": 6,
+            "name": "USDI Token",
+            "symbol": "USDI",
+            "typeHash": "0x7f3fba3fb8d6e000176f7e1ae22e8cd02841dec6a8341dc69aeef46387a20664",
+            "typeScript": {
+                "args": "0xd591ebdc69626647e056e13345fd830c8b876bb06aa07ba610479eb77153ea9f",
+                "codeHash": "0xbfa35a9c38a676682b65ade8f02be164d48632281477e36f8dc2f41f79e56bfc",
+                "hashType": "type"
+            },
+            "typeCellDep": {
+                "outPoint": {
+                    "txHash": "0xf6a5eef65101899db9709c8de1cc28f23c1bee90d857ebe176f6647ef109e20d",
+                    "index": 0
+                },
+                "depType": "code"
+            },
+            "extensions": {
+                "links": {
+                    "official": "https://www.interpaystellar.com/",
+                    "twitter": "https://x.com/IPN_Intelligent",
+                    "discord": "",
+                    "telegram": "",
+                    "github": "",
+                    "medium": "",
+                    "youtube": ""
+                }
+            }
         }
     ]
 }
