@@ -510,6 +510,96 @@
                     "youtube":"" 
                 }
             }
+        },
+        {
+            "logo": "https://xudtlogos.cc/logos/bank-logo.png",
+            "decimals": 8,
+            "name": "BANK",
+            "symbol": "BANK",
+            "typeHash": "0x73b7266e3500db7c5def31d1d8a112e86fa5c59d83f222486913836704cee3f4",
+            "typeScript": {
+                "args": "0x3046219b8dd69e0513691568ea438ac6a2a356c0f2695f98a8aed3cc03a1061a",
+                "codeHash": "0x50bd8d6680b8b9cf98b73f3c08faf8b2a21914311954118ad6609be6e78a1b95",
+                "hashType": "data1"
+            },
+            "typeCellDep": {
+                "outPoint": {
+                    "txHash": "0xc07844ce21b38e4b071dd0e1ee3b0e27afd8d7532491327f39b786343f558ab7",
+                    "index": 0
+                },
+                "depType": "code"
+            },
+            "extensions": {
+                "links":{
+                    "official":"",
+                    "twitter":"",
+                    "discord":"",
+                    "telegram":"",
+                    "github":"",
+                    "medium":"",
+                    "youtube":"" 
+                }
+            }
+        },
+        {
+            "logo": "https://xudtlogos.cc/logos/usdi-logo.png",
+            "decimals": 6,
+            "name": "USDI Token",
+            "symbol": "USDI",
+            "typeHash": "0x7f3fba3fb8d6e000176f7e1ae22e8cd02841dec6a8341dc69aeef46387a20664",
+            "typeScript": {
+                "args": "0xd591ebdc69626647e056e13345fd830c8b876bb06aa07ba610479eb77153ea9f",
+                "codeHash": "0xbfa35a9c38a676682b65ade8f02be164d48632281477e36f8dc2f41f79e56bfc",
+                "hashType": "type"
+            },
+            "typeCellDep": {
+                "outPoint": {
+                    "txHash": "0xf6a5eef65101899db9709c8de1cc28f23c1bee90d857ebe176f6647ef109e20d",
+                    "index": 0
+                },
+                "depType": "code"
+            },
+            "extensions": {
+                "links": {
+                    "official": "https://www.interpaystellar.com/",
+                    "twitter": "https://x.com/IPN_Intelligent",
+                    "discord": "",
+                    "telegram": "",
+                    "github": "",
+                    "medium": "",
+                    "youtube": ""
+                }
+            }
+        },
+        {
+            "logo": "https://xudtlogos.cc/logos/dragon-logo.png",
+            "decimals": 8,
+            "name": "DRAGON",
+            "symbol": "DRAGON",
+            "typeHash": "0x06ae3b6bf915242bc33a4844e9c3aa62cbed3d3fa02f7b0507ccabbf3d93468e",
+            "typeScript": {
+                "args": "0x7dc5366303a50d59003770fb9193f2db76997d8b1833e44ac41d11a1be8e7785",
+                "codeHash": "0x50bd8d6680b8b9cf98b73f3c08faf8b2a21914311954118ad6609be6e78a1b95",
+                "hashType": "type"
+            },
+            "typeCellDep": {
+                "outPoint": {
+                    "txHash": "0xc07844ce21b38e4b071dd0e1ee3b0e27afd8d7532491327f39b786343f558ab7",
+                    "index": 0
+                },
+                "depType": "code"
+            },
+            "extensions": {
+                "links": {
+                    "official": "",
+                    "twitter": "",
+                    "discord": "",
+                    "telegram": "",
+                    "github": "",
+                    "medium": "",
+                    "youtube": ""
+                }
+            }
         }
     ]
 }
