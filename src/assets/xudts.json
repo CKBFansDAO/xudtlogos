@@ -3,6 +3,10 @@
         "name": "ccBTC",
         "symbol": "BTC"
     },
+    "usdi": {
+        "name": "USDI",
+        "symbol": "USDI"
+    },
     "seal": {
         "name": "Seal",
         "symbol": "SEAL"
@@ -11,10 +15,6 @@
         "name": "iCKB",
         "symbol": "iCKB"
     },
-    "memes": {
-        "name": "Memes",
-        "symbol": "MEMES"
-    },
     "stb": {
         "name": "STB",
         "symbol": "STB"
@@ -22,6 +22,10 @@
     "rusd": {
         "name": "RUSD",
         "symbol": "RUSD"
+    },
+    "memes": {
+        "name": "Memes",
+        "symbol": "MEMES"
     },
     "clown": {
         "name": "Clown",
