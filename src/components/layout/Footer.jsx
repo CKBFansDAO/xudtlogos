@@ -9,7 +9,7 @@ const Footer = () => {
                 <span>Copyright © 2024, xudtlogos.cc</span>
                 <div className='flex gap-2'>
                     <span>❤️‍🔥 Built by CKBFans community with ❤️‍🔥</span>
-                    <a href='https://github.com/CKBFans/xudtlogos.cc' className='flex items-center gap-1 hover:text-blue-400' target='_blank' rel="noopener noreferrer">
+                    <a href='https://github.com/CKBFansDAO/xudtlogos' className='flex items-center gap-1 hover:text-blue-400' target='_blank' rel="noopener noreferrer">
                         <span>GitHub</span>
                         <GithubLogo className='w-5 h-5 fill-white' />
                     </a>
