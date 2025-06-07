@@ -1,4 +1,8 @@
 {
+    "ckb": {
+        "name": "CKB",
+        "symbol": "CKB"
+    },
     "ccbtc":{
         "name": "ccBTC",
         "symbol": "BTC"
