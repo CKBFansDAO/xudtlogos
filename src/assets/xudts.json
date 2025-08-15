@@ -27,6 +27,14 @@
         "name": "RUSD",
         "symbol": "RUSD"
     },
+    "bank": {
+        "name": "BANK",
+        "symbol": "BANK"
+    },
+    "coffee": {
+        "name": "COFFEE",
+        "symbol": "COFFEE"
+    },
     "memes": {
         "name": "Memes",
         "symbol": "MEMES"
