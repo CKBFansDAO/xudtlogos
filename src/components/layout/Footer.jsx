@@ -6,7 +6,7 @@ const Footer = () => {
         <div className='flex flex-col justify-center w-full px-5 h-[100px] bg-color-maintext text-white'>
 
             <div className='flex flex-col items-center justify-center py-5 gap-3'>
-                <span>Copyright © 2024, xudtlogos.cc</span>
+                <span>Copyright © 2024-{new Date().getFullYear()}, xudtlogos.cc</span>
                 <div className='flex gap-2'>
                     <span>❤️‍🔥 Built by CKBFans community with ❤️‍🔥</span>
                     <a href='https://github.com/CKBFansDAO/xudtlogos' className='flex items-center gap-1 hover:text-blue-400' target='_blank' rel="noopener noreferrer">
