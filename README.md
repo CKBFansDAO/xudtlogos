@@ -1,3 +1,16 @@
+<h1 align="center" style="font-size: 64px;">
+  xudtlogos
+</h1>
+
+<p align="center">
+  <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/ckbfansdao/xudtlogos" />
+  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/ckbfansdao/xudtlogos/master" />
+  <img alt="GitHub branch check runs" src="https://img.shields.io/github/check-runs/ckbfansdao/xudtlogos/master" />
+  <a href="https://deepwiki.com/CKBFansDAO/xudtlogos">
+    <img alt="Ask DeepWiki" src="https://deepwiki.com/badge.svg">
+  </a>
+</p>
+
 ## Background
 
 With the continuous increase of xUDT assets on CKB, the need to display asset logos is becoming increasingly prominent. However, there is currently a lack of a unified platform to manage and display the logos of these assets, which poses a certain challenge to DApp developers. To address this issue, We initiated the open source project xudtlogos, aiming to provide a unified logo management solution for xUDT assets on CKB.
