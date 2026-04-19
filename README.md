@@ -28,3 +28,4 @@ With the continuous increase of xUDT assets on CKB, the need to display asset lo
 - Facilitate cooperation and communication between xUDT project owners and DApp developers, promoting the development and growth of the CKB ecosystem.
 
 We look forward to the community's support and feedback, let's work together to contribute to the prosperity and health of the CKB ecosystem!
+
