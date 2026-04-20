@@ -1,0 +1,25 @@
+name: Sync to Context7
+
+on:
+  push:
+    branches: [master]      # 每次 push 到 master 自动触发
+  release:
+    types: [published]      # 发布 Release 时触发
+  workflow_dispatch:        # 也支持手动触发
+
+jobs:
+  update-context7:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Refresh Context7 Documentation
+        id: context7
+        uses: rennf93/upsert-context7@v1
+        with:
+          operation: refresh
+
+      - name: Show result
+        run: |
+          echo "Success: ${{ steps.context7.outputs.success }}"
+          echo "Message: ${{ steps.context7.outputs.message }}"
