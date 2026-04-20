@@ -4,6 +4,8 @@ import Home from '../../pages/Home';
 import Project from '../../pages/Project';
 import Faqs from '../../pages/Faqs';
 import About from '../../pages/About';
+import Examples from '../../pages/Examples';
+import Tools from '../../pages/Tools';
 
 const MainView = () => {
     return (
@@ -11,6 +13,8 @@ const MainView = () => {
             <Routes>
                 <Route path='/' exact element={<Home />} />
                 <Route path='/faq' exact element={<Faqs />} />
+                <Route path='/examples' exact element={<Examples />} />
+                <Route path='/tools' exact element={<Tools />} />
                 <Route path='/about' exact element={<About />} />
                 <Route path='/:xudt' element={<Project />} />
                 <Route path='*' exact element={<Home />} />

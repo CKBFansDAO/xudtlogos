@@ -53,9 +53,12 @@ const Project = () => {
 
             <div className='flex flex-col gap-5 mt-10'>
                 <span className='title text-3xl md:mb-5'>Contribute</span>
-                <p> You can submit a new xUDT asset logo to xudtlogos by creating a new pull request to our github repository, also by creating an new issue. </p>
-                <p> Alternatively, if you are the owner of the brand, and if the logo is presented or being used in a wrong way, you can request the logo to be removed. </p>
-                <a className='font-bold text-center rounded w-40 py-2 bg-color-maintext text-white' href={`https://github.com/CKBFansDAO/xudtlogos/issues/new?assignees=yixyxiu&labels=new+logo&projects=&template=add-xxxx-xxx-logo.md&title=%5BREQ%5DAdd+Nervos+Network+-+CKB+logo+`} target="_blank" rel="noopener noreferrer">Submit new Logo</a>
+                <p> You can submit a new xUDT or DOB logo to xudtlogos by opening a <span className='title'>pull request from a fork</span> of our GitHub repository. Use the <Link to='/tools' className='title text-color-main'>Tools</Link> page to check for existing logos, generate the canonical filename, and get copy-pastable git commands for the full fork → clone → commit → push → PR workflow. </p>
+                <p> Alternatively, if you are the owner of the brand and the logo is being presented incorrectly, open a PR removing the file (or an issue if you cannot PR) and a maintainer will review. </p>
+                <div className='flex flex-wrap gap-3'>
+                    <a className='font-bold text-center rounded px-4 py-2 bg-color-maintext text-white hover:opacity-90' href={`https://github.com/CKBFansDAO/xudtlogos/fork`} target="_blank" rel="noopener noreferrer">Fork & submit a PR</a>
+                    <Link to='/tools' className='font-bold text-center rounded px-4 py-2 border border-color-maintext text-color-maintext hover:bg-color-maintext hover:text-white transition-colors'>Open Tools</Link>
+                </div>
             </div>
 
             <div>

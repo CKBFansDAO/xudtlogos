@@ -59,6 +59,45 @@ To ensure consistent display quality across all platforms, xUDT logos uploaded t
 - For dark/light mode compatibility, ensure logo is visible on both backgrounds
 - Do not include version numbers, taglines, or additional text in the logo file
 
+## Caching Strategy for DApp Integrations
+
+**TL;DR:** drop in `XudtLogoLoader` and let the browser handle the rest. No extra modules, no `localStorage`, no configuration.
+
+Logos are static PNG/SVG assets served from a CDN with long-lived `Cache-Control` headers, so the browser's **HTTP disk cache already deduplicates every repeated request** for the same URL — across components, routes, and page reloads. A marketplace rendering the same logo a thousand times makes exactly one network request.
+
+### What the browser already does for you
+- **Binary caching**: the first `<img src="https://xudtlogos.cc/logos/{symbol}-logo.png">` triggers a request; every subsequent `<img>` with the same URL is served from disk with zero network traffic.
+- **Revalidation**: when the upstream PNG changes, the CDN ships new `ETag`/`Last-Modified` headers and the browser picks it up automatically.
+
+### What `XudtLogoLoader` adds (and only what it adds)
+- A module-level `Set<string>` of symbols that 404'd in the current session, so remounts don't re-trigger known-missing requests.
+- `loading="lazy"` + `decoding="async"` so offscreen logos in long lists never even start loading.
+- A graceful fallback (colored initial-letter bubble) when a logo is missing.
+
+The `Set` stores strings only, is never persisted, and is cleared on every reload — so newly-uploaded logos appear on the next refresh with no TTL machinery.
+
+### Why we deliberately avoid `localStorage` / `IndexedDB`
+- **Quota pressure**: `localStorage` has a ~5 MB per-origin budget shared with the rest of your app. A marketplace with thousands of tokens would bloat it and risk evicting state that actually matters.
+- **Redundancy**: the browser HTTP cache already stores successful logo binaries far more efficiently than we could.
+- **Staleness hurts UX**: persisting a "missing" flag across reloads means a user would keep seeing the fallback for a logo that was uploaded hours ago.
+
+### Two rules for not defeating the cache
+1. **Use a stable URL.** Never append `?t=${Date.now()}` or random query strings. Pick one casing for the `symbol` and stick to it.
+2. **Import the component, not a cache module.** Consumers should only ever write `<XudtLogoLoader symbol="..." />`. The caching is an implementation detail.
+
+### When to reach for something heavier
+
+| Need | Tool |
+|---|---|
+| Default case (online SPA, any size) | **Nothing beyond `XudtLogoLoader`.** |
+| Offline / PWA support | **Service Worker** with a `stale-while-revalidate` strategy on `xudtlogos.cc/logos/*`. |
+| Bundle binaries into an installable app | **Cache API** (via Service Worker) or **IndexedDB** Blobs with an LRU you control. |
+
+### Token list caching
+For pages that render many logos at once, the repo also ships `src/components/cache/tokensCache.js` — a singleton that fetches `/tokens/token_list.json` once per session. Use it to pre-warm your UI so per-logo lookups are O(1).
+
+See the FAQs page for the full copy-pasteable `XudtLogoLoader` implementation.
+
 ## Expected Outcomes
 
 - Provide a unified logo display platform for xUDT assets on CKB, enhancing convenience and user experience for DApp developers and users.

@@ -4,6 +4,16 @@ import { ReactComponent as AppLogo } from '../../assets/images/xudtlogos-logo.sv
 
 let navs_config = [
     {
+        name: "Tools",
+        icon: "",
+        link: "/tools"
+    },
+    {
+        name: "Examples",
+        icon: "",
+        link: "/examples"
+    },
+    {
         name: "FAQ",
         icon: "",
         link: "/faq"
@@ -29,7 +39,7 @@ const TopNav = () => {
             {
                 navs_config.map((item, index) => {
                     return <Link key={`nav-${index}`} onClick={() => setCurMainTab(item.link)}
-                        className={`flex flex-col h-[60px] cursor-pointer hover:text-color-maintext border-color-main ${curMainTab === item.link ? 'border-b-[2px] border-color-maintext text-color-maintext' : 'text-[#FFF]'} `} to={`${item.link}`}>
+                        className={`flex flex-col h-[60px] cursor-pointer hover:text-color-maintext border-color-main ${curMainTab === item.link ? 'border-b-[2px] font-bold border-color-maintext text-color-maintext' : 'text-[#FFF]'} `} to={`${item.link}`}>
                         <div className='flex px-2 h-full items-center' key={`main_tab_${index}_${item.name}`}>
                             {item.name}
                         </div>
