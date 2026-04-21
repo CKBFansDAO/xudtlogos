@@ -104,3 +104,93 @@ We assume that the data object containing the xUDT symbol field is called xudtIn
 - Successful logos: handled by HTTP `Cache-Control` headers on the CDN. No app-level policy required.
 - Missing logos: cleared automatically on reload (session-scoped `Set`). If you need an in-session refresh, re-render `XudtLogoLoader` with a `key` prop change after clearing the `Set` (you can expose a helper that calls `missingSymbols.clear()` if you control the file).
 - Binary assets: if the `xudtlogos.cc` team publishes a new PNG for the same symbol, they ship it under the same URL with updated `ETag`/`Last-Modified`, and the browser revalidates automatically. Consumers do nothing.
+
+### How to submit a new xUDT logo?
+
+New logos are accepted via **pull request from a fork**. This is the standard GitHub contribution flow — about five minutes for anyone familiar with git. Direct web uploads to this repo are disabled (GitHub will show `Uploads are disabled` without push access), so you need to fork first.
+
+1. On the [Tools](/tools) page, use **Tool 1** to confirm the asset does not already have a logo.
+2. Use **Tool 2** to generate the canonical filename — e.g. `CKB` → `ckb-logo.png`. Rename your PNG (and optional SVG) to exactly this filename and ensure it meets the [Logo Specifications](https://github.com/CKBFansDAO/xudtlogos/blob/master/README.md#logo-specifications).
+3. [Fork the repository](https://github.com/CKBFansDAO/xudtlogos/fork), then clone your fork and create a branch:
+
+```bash
+git clone git@github.com:<your-username>/xudtlogos.git
+cd xudtlogos
+git checkout -b add-<asset>-logo
+```
+
+4. Drop your file into `public/logos/`. For xUDT tokens, also add a registry entry to `src/assets/xudts.json` so the token appears on the home page — the top-level key must equal the normalized filename prefix:
+
+```json
+"ckb": {
+  "name": "CKB",
+  "symbol": "CKB"
+}
+```
+
+5. (Optional but recommended) Run the dev server and visit `/tools` locally to verify with Tool 1:
+
+```bash
+npm install
+npm start
+```
+
+6. Commit and push to your fork, then open a pull request against `CKBFansDAO/xudtlogos:master`:
+
+```bash
+git add public/logos/<filename>-logo.png src/assets/xudts.json
+git commit -m "Add <asset> logo"
+git push -u origin add-<asset>-logo
+```
+
+GitHub will surface a **Compare & pull request** banner on your fork after the push.
+
+7. Verify via the Netlify preview link posted in the PR comments — see "How to verify a submitted PR" below.
+
+The [Tools](/tools) page has the full walkthrough with copy-pastable commands at the bottom.
+
+[Fork the repository →](https://github.com/CKBFansDAO/xudtlogos/fork)
+
+### How to submit a DOB cluster logo?
+
+DOB (Digital Object) clusters use the same fork-and-PR flow as xUDT logos. The only difference is what the "symbol" represents: for a DOB cluster it is the cluster display name (e.g. `Nervape 3D`, `Nervape / B-Boat`, `Robert DOB0 Cluster`), normalized to kebab-case.
+
+1. Use [Tool 1](/tools) to confirm the cluster doesn't already have a logo. Whitespace, slashes, mixed case, and leading dots are all normalized — so `Nervape 3D` and `nervape-3d` check the same file.
+2. Use **Tool 2** (or **Tool 3** when uploading many DOBs at once) to generate the canonical filename — e.g. `Nervape 3D` → `nervape-3d-logo.png`.
+3. Follow the same **fork → clone → branch → commit → push → PR** steps as for xUDT (see above or the [Tools](/tools) page). Place the file(s) under `public/logos/` with the generated filename.
+4. DOBs do **not** need to be added to `src/assets/xudts.json` — that registry is for xUDT tokens displayed on the home page. DApps render DOB logos by URL directly.
+5. Open the PR and verify via the Netlify preview (next question).
+
+[Fork the repository →](https://github.com/CKBFansDAO/xudtlogos/fork)
+
+### How to verify a submitted PR renders correctly?
+
+Every pull request triggers an automatic Netlify preview deploy. You can see exactly what xudtlogos.cc will look like once your PR is merged — without waiting for a maintainer to review.
+
+1. After opening the PR, wait roughly a minute. The **netlify** bot will post a comment containing a **Deploy Preview** link (URL shape: `https://deploy-preview-<PR#>--<site>.netlify.app`).
+2. Open the preview link. Navigate to `/tools` on the preview site and run **Tool 1** with the asset name — if the logo displays, you're done.
+3. Alternatively, hit the file URL directly: `<preview-url>/logos/<your-filename>-logo.png`. A 200 response means the PR is ready to merge.
+4. For xUDT entries, also verify the home page lists your project (it reads `src/assets/xudts.json`).
+5. If the preview fails or the logo doesn't render, re-check the filename with **Tool 2**, fix, and push again — the preview re-deploys automatically.
+
+Tip: if Netlify's comment bot doesn't post within a few minutes, check the PR's **Checks** tab — the preview URL is also available there.
+
+### How to update or remove a logo?
+
+Use the same fork-and-PR flow. To **update**, commit the new file with the same canonical filename under `public/logos/` on your fork and open a PR. To **remove**, open a PR deleting the file (and its entry in `xudts.json` if applicable) and briefly explain the reason (e.g. official rebrand, brand-owner request). If you cannot submit a PR yourself, open an [issue](https://github.com/CKBFansDAO/xudtlogos/issues) with the details; these receive lower priority than PRs.
+
+### What are the differences between SVG and PNG file formats?
+
+SVG and PNG are two common file formats used for images. The main difference between the two is the way they represent graphics. PNG files are made up of pixels, while SVG files are made up of vectors.
+
+Pixels are tiny squares of color that are arranged in a grid to create an image. When you zoom in on a PNG image, you can see the individual pixels that make up the image. This is why PNG images can appear blurry or pixelated when they are resized or zoomed in.
+
+Vectors, on the other hand, are made up of lines and shapes that are defined by mathematical equations. This means that SVG images can be scaled up or down without losing quality. When you zoom in on an SVG image, the lines and shapes remain sharp and clear, no matter how much you zoom in.
+
+For this reason, SVG is generally considered the better option for images that need to be resized or scaled, such as logos or icons. Additionally, SVG files can be used as a source and easily converted to other formats, including PNG. PNG files, on the other hand, cannot be converted into vectors, so it's important to prioritize using SVG as a source when possible.
+
+### Are xUDT logos protected by intellectual property laws, or can they be used without restriction?
+
+Check the official brand guidelines (brandbook) on the xUDT project's website for logo usage information.
+
+If no guidelines are available, contact the project team for permission.
