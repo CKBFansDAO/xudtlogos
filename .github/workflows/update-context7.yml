@@ -19,7 +19,21 @@ jobs:
         with:
           operation: refresh
 
-      - name: Show result
+      - name: Show results
         run: |
+          echo "✅ Operation completed!"
           echo "Success: ${{ steps.context7.outputs.success }}"
+          echo "Status Code: ${{ steps.context7.outputs.status-code }}"
           echo "Message: ${{ steps.context7.outputs.message }}"
+
+      - name: Handle success
+        if: steps.context7.outputs.success == 'true'
+        run: |
+          echo "🎉 Context7 documentation updated successfully!"
+          echo "Your docs should be available at https://context7.com"
+
+      - name: Handle failure
+        if: steps.context7.outputs.success == 'false'
+        run: |
+          echo "❌ Context7 update failed"
+          echo "Error: ${{ steps.context7.outputs.message }}"

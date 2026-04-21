@@ -12,12 +12,7 @@ const Faqs = () => {
         <div className='w-full flex flex-col py-14 gap-14 text-base text-color-maintext'>
             <span className='text-2xl title'>FAQs</span>
             <div className='flex flex-col gap-5'>
-                <span className='title text-lg '>
-                    How to display xUDT logo on Dapps?
-                </span>
-                <div className='w-full flex flex-col'>
-                    <MarkdownViewer filePath={'/markdown/faqs.md'}></MarkdownViewer>
-                </div>
+                <MarkdownViewer filePath={'/markdown/faqs.md'}></MarkdownViewer>
             </div>
 
             <div className='flex flex-col gap-5'>
