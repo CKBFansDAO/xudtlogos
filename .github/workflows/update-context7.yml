@@ -1,39 +1,17 @@
-name: Sync to Context7
+name: Refresh Context7 Docs
 
 on:
   push:
-    branches: [master]      # 每次 push 到 master 自动触发
-  release:
-    types: [published]      # 发布 Release 时触发
-  workflow_dispatch:        # 也支持手动触发
+    branches:
+      - master # change to your default branch if different
 
 jobs:
-  update-context7:
+  refresh:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Refresh Context7 Documentation
-        id: context7
-        uses: rennf93/upsert-context7@1.1
-        with:
-          operation: refresh
-
-      - name: Show results
+      - name: Trigger Context7 Refresh
         run: |
-          echo "✅ Operation completed!"
-          echo "Success: ${{ steps.context7.outputs.success }}"
-          echo "Status Code: ${{ steps.context7.outputs.status-code }}"
-          echo "Message: ${{ steps.context7.outputs.message }}"
-
-      - name: Handle success
-        if: steps.context7.outputs.success == 'true'
-        run: |
-          echo "🎉 Context7 documentation updated successfully!"
-          echo "Your docs should be available at https://context7.com"
-
-      - name: Handle failure
-        if: steps.context7.outputs.success == 'false'
-        run: |
-          echo "❌ Context7 update failed"
-          echo "Error: ${{ steps.context7.outputs.message }}"
+          curl -s -X POST https://context7.com/api/v1/refresh \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${{ secrets.CONTEXT7_SYNC_API_KEY }}" \
+            -d '{"libraryName": "/ckbfansdao/xudtlogos"}'
