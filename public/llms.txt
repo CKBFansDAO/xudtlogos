@@ -1,0 +1,401 @@
+# xudtlogos
+
+xudtlogos is a unified logo management platform for xUDT (User-Defined Token) assets on the CKB (Nervos) blockchain. The project provides a centralized solution where xUDT project owners can upload and manage their token logos, while DApp developers can easily access and display high-quality logos in PNG and SVG formats. The platform is available at xudtlogos.cc and operates under an open-source collaboration model.
+
+The platform offers automatic deployment and standardized management of token logos, ensuring consistent size, format, and quality requirements. It includes a comprehensive token list with metadata such as type scripts, decimals, and social links for each xUDT asset. The React-based frontend provides components and hooks that can be reused by other DApps to integrate xUDT logo functionality into their applications.
+
+## Static Logo URLs
+
+Token logos are served from a predictable URL pattern based on the token symbol. Both PNG and SVG formats are available for download.
+
+```bash
+# PNG logo format
+https://xudtlogos.cc/logos/{symbol}-logo.png
+
+# SVG logo format
+https://xudtlogos.cc/logos/{symbol}-logo.svg
+
+# Thumbnail format
+https://xudtlogos.cc/logos/thumbs/{symbol}.png
+
+# Examples:
+curl -O https://xudtlogos.cc/logos/ckb-logo.png
+curl -O https://xudtlogos.cc/logos/seal-logo.svg
+curl -O https://xudtlogos.cc/logos/thumbs/candy.png
+```
+
+## Token List API
+
+The complete token list with metadata is available as a JSON file that includes token details, type scripts, and social links.
+
+```bash
+# Fetch the complete token list
+curl https://xudtlogos.cc/tokens/token_list.json
+```
+
+```json
+{
+  "tokens": [
+    {
+      "name": "Seal",
+      "symbol": "Seal",
+      "logo": "https://xudtlogos.cc/logos/seal-logo.png",
+      "decimals": 8,
+      "typeHash": "0x178fb47b597a56d48b549226aff59f750b4784250c7f40f781b64ef090a8a0a7",
+      "typeScript": {
+        "args": "0x2ae639d6233f9b15545573b8e78f38ff7aa6c7bf8ef6460bf1f12d0a76c09c4e",
+        "codeHash": "0x50bd8d6680b8b9cf98b73f3c08faf8b2a21914311954118ad6609be6e78a1b95",
+        "hashType": "data1"
+      },
+      "typeCellDep": {
+        "outPoint": {
+          "txHash": "0xc07844ce21b38e4b071dd0e1ee3b0e27afd8d7532491327f39b786343f558ab7",
+          "index": 0
+        },
+        "depType": "code"
+      },
+      "extensions": {
+        "links": {
+          "official": "",
+          "twitter": "https://x.com/btckbseal",
+          "discord": "",
+          "telegram": "https://t.me/sealrgbpp",
+          "github": "",
+          "medium": "",
+          "youtube": ""
+        }
+      }
+    }
+  ]
+}
+```
+
+## XudtLogoLoader React Component
+
+A React component for loading and displaying xUDT token logos with fallback support when loading fails.
+
+```jsx
+import React, { useEffect, useState } from "react";
+
+// Session-level Set of symbols known to 404. String-only, tiny memory
+// footprint, automatically cleared on reload. Successful logos are
+// deduplicated by the browser's HTTP cache; we do not track them here.
+const missingSymbols = new Set();
+
+// Normalize symbols so varying casing / whitespace / leading dots from
+// different data sources all resolve to the same logo URL and cache key.
+const normalizeSymbol = (s) =>
+  String(s || "")
+    .trim()
+    .replace(/^\./, "")
+    .replace(/[\s/]+/g, "-")
+    .toLowerCase();
+
+const XudtLogoLoader = ({ symbol, sizeStyle }) => {
+  const normalized = normalizeSymbol(symbol);
+  const [loadFailed, setLoadFailed] = useState(() =>
+    missingSymbols.has(normalized)
+  );
+
+  const handleLoadError = () => {
+    missingSymbols.add(normalized);
+    setLoadFailed(true);
+  };
+
+  useEffect(() => {
+    setLoadFailed(missingSymbols.has(normalizeSymbol(symbol)));
+  }, [symbol]);
+
+  const initial = (symbol && symbol.charAt(0).toUpperCase()) || "?";
+
+  return (
+    <div>
+      {loadFailed ? (
+        <div className={`${sizeStyle || "h-40 w-40 text-[96px]"} rounded-full bg-[#378ACA] text-white font-bold flex items-center place-content-center`}>
+          {initial}
+        </div>
+      ) : (
+        <img
+          className={`${sizeStyle || "h-40 w-40"}`}
+          src={`https://xudtlogos.cc/logos/${normalized}-logo.png`}
+          alt={`xudt-${normalized}-logo`}
+          loading="lazy"
+          decoding="async"
+          onError={handleLoadError}
+        />
+      )}
+    </div>
+  );
+};
+
+export default XudtLogoLoader;
+
+// Usage example
+function App() {
+  return (
+    <div>
+      <XudtLogoLoader symbol="seal" sizeStyle="w-24 h-24 text-5xl" />
+      <XudtLogoLoader symbol="ckb" sizeStyle="w-16 h-16 text-3xl" />
+      <XudtLogoLoader symbol="candy" /> {/* Uses default 160x160 size */}
+    </div>
+  );
+}
+
+export default XudtLogoLoader;
+```
+
+## useXudtLogo Hook
+
+A React hook for checking logo availability and loading state for a given token symbol and format.
+
+```jsx
+import { useEffect, useState } from 'react';
+
+const useXudtLogo = ({ symbol, logoType }) => {
+  const [loaded, setLoaded] = useState(false);
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchLogo = async () => {
+      try {
+        const response = await fetch(`logos/${symbol}-logo.${logoType}`);
+        if (response.ok && response.headers.get('Content-Type')?.startsWith('image/')) {
+          setLoaded(true);
+        }
+      } catch (error) {
+        // Logo not available
+      }
+      setLoading(false);
+    };
+
+    fetchLogo();
+  }, [symbol, logoType]);
+
+  return { isLoading, loaded };
+};
+
+// Usage example
+function LogoDisplay({ symbol }) {
+  const { isLoading, loaded: pngLoaded } = useXudtLogo({ symbol, logoType: 'png' });
+  const { loaded: svgLoaded } = useXudtLogo({ symbol, logoType: 'svg' });
+
+  if (isLoading) return <div>Loading...</div>;
+
+  return (
+    <div>
+      {pngLoaded && <img src={`/logos/${symbol}-logo.png`} alt={symbol} />}
+      {svgLoaded && <img src={`/logos/${symbol}-logo.svg`} alt={symbol} />}
+    </div>
+  );
+}
+
+export default useXudtLogo;
+```
+
+## TokensCache Singleton
+
+A singleton class for caching and retrieving token data from the token list with methods to fetch and search tokens.
+
+```javascript
+class TokensCache {
+  constructor() {
+    if (!TokensCache.instance) {
+      this.tokenList = null;
+      TokensCache.instance = this;
+    }
+    return TokensCache.instance;
+  }
+
+  async fetchTokenList() {
+    if (this.tokenList) {
+      return this.tokenList;
+    }
+
+    try {
+      const response = await fetch('/tokens/token_list.json');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      this.tokenList = data.tokens;
+    } catch (error) {
+      console.error('Error fetching the token list:', error);
+    }
+
+    return this.tokenList;
+  }
+
+  async getTokenList() {
+    if (!this.tokenList) {
+      await this.fetchTokenList();
+    }
+    return this.tokenList;
+  }
+
+  async getToken(symbol) {
+    if (!this.tokenList) {
+      await this.fetchTokenList();
+    }
+
+    if (symbol?.length > 0) {
+      const tokenInfo = this.tokenList.find(
+        token => token.symbol.toLowerCase() === symbol.toLowerCase()
+      );
+      return tokenInfo;
+    }
+
+    return null;
+  }
+}
+
+// Usage example
+const tokensCache = new TokensCache();
+
+async function displayTokenInfo() {
+  // Get all tokens
+  const allTokens = await tokensCache.getTokenList();
+  console.log(`Total tokens: ${allTokens.length}`);
+
+  // Get specific token by symbol
+  const sealToken = await tokensCache.getToken('Seal');
+  console.log(sealToken);
+  // Output: { name: 'Seal', symbol: 'Seal', decimals: 8, typeHash: '0x178...', ... }
+
+  // Case-insensitive search
+  const ckbToken = await tokensCache.getToken('CKB');
+  const icKbToken = await tokensCache.getToken('ickb');
+}
+
+export default tokensCache;
+```
+
+## useXudtProject Hook
+
+A React hook for fetching complete token information including metadata, type scripts, and social links.
+
+```jsx
+import React, { useEffect, useState } from 'react';
+import tokensCache from '../components/cache/tokensCache';
+
+const useXudtProject = (symbol) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [xudtInfo, setXudtInfo] = useState(null);
+  const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    const fetchToken = async (symbol) => {
+      const tokenInfo = await tokensCache.getToken(symbol);
+      setXudtInfo(tokenInfo);
+      setIsLoading(false);
+      if (!tokenInfo) {
+        setIsError(true);
+      }
+    };
+
+    fetchToken(symbol);
+  }, [symbol]);
+
+  return { isLoading, isError, xudtInfo };
+};
+
+// Usage example
+function TokenDetails({ symbol }) {
+  const { isLoading, isError, xudtInfo } = useXudtProject(symbol);
+
+  if (isLoading) return <div>Loading token info...</div>;
+  if (isError) return <div>Token not found</div>;
+
+  return (
+    <div>
+      <h2>{xudtInfo.name} ({xudtInfo.symbol})</h2>
+      <p>Decimals: {xudtInfo.decimals}</p>
+      <p>Type Hash: {xudtInfo.typeHash}</p>
+      <img src={xudtInfo.logo} alt={xudtInfo.symbol} />
+      {xudtInfo.extensions?.links?.twitter && (
+        <a href={xudtInfo.extensions.links.twitter}>Twitter</a>
+      )}
+    </div>
+  );
+}
+
+export default useXudtProject;
+```
+
+## Application Routes
+
+The application provides the following routes for browsing and downloading token logos.
+
+```jsx
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+// Available routes:
+// /           - Home page with all token logos grid
+// /faq        - Frequently asked questions
+// /about      - About xudtlogos project
+// /:xudt      - Individual token page (e.g., /seal, /ckb, /candy)
+
+// Route structure
+<BrowserRouter>
+  <Routes>
+    <Route path='/' exact element={<Home />} />
+    <Route path='/faq' exact element={<Faqs />} />
+    <Route path='/about' exact element={<About />} />
+    <Route path='/:xudt' element={<Project />} />
+    <Route path='*' exact element={<Home />} />
+  </Routes>
+</BrowserRouter>
+
+// Example URLs:
+// https://xudtlogos.cc/           - Browse all logos
+// https://xudtlogos.cc/seal       - Seal token page with PNG/SVG downloads
+// https://xudtlogos.cc/ckb        - CKB token page
+// https://xudtlogos.cc/rgb++      - RGB++ token page
+// https://xudtlogos.cc/faq        - FAQs
+// https://xudtlogos.cc/about      - About page
+```
+
+## Token Data Schema
+
+The token list follows a specific JSON schema that includes CKB-specific type scripts and cell dependencies.
+
+```javascript
+// Token data structure
+const tokenSchema = {
+  name: "string",           // Display name of the token
+  symbol: "string",         // Token symbol (used in logo URLs)
+  logo: "string",           // Full URL to the PNG logo
+  decimals: "number",       // Token decimal places (typically 8)
+  typeHash: "string",       // CKB type script hash
+  typeScript: {
+    args: "string",         // Type script arguments
+    codeHash: "string",     // Type script code hash
+    hashType: "string"      // "type" or "data1"
+  },
+  typeCellDep: {
+    outPoint: {
+      txHash: "string",     // Transaction hash of the cell dep
+      index: "number"       // Output index
+    },
+    depType: "string"       // "code" or "depGroup"
+  },
+  extensions: {
+    links: {
+      official: "string",   // Official website URL
+      twitter: "string",    // Twitter/X profile URL
+      discord: "string",    // Discord server URL
+      telegram: "string",   // Telegram group URL
+      github: "string",     // GitHub repository URL
+      medium: "string",     // Medium blog URL
+      youtube: "string"     // YouTube channel URL
+    }
+  }
+};
+
+// Currently supported tokens include:
+// ccBTC, Seal, CAT++, Otter, Clown, MEMES, Girl, CANDY, BEAF, STB,
+// RGB++, CIPHER, JOKER, BAIYU, RUSD, BITCAT, iCKB, BANK, USDI, DRAGON
+```
+
+The xudtlogos platform serves as the central resource for CKB ecosystem DApp developers who need to display consistent, high-quality token logos. By providing both static asset URLs and reusable React components, developers can integrate token logos with minimal effort while maintaining visual consistency across the ecosystem. The token list API provides comprehensive on-chain metadata that enables DApps to fully interact with xUDT assets.
+
+For project owners looking to add or update their token logos, the platform follows an open-source contribution model via GitHub issues. The standardized submission process ensures that all logos meet quality requirements for size, format, and transparency. The automatic deployment system publishes approved logos to the public CDN, making them immediately available to all consuming applications through the predictable URL patterns documented above.
