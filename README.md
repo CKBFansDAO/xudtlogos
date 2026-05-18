@@ -104,3 +104,4 @@ See the FAQs page for the full copy-pasteable `XudtLogoLoader` implementation.
 - Facilitate cooperation and communication between xUDT project owners and DApp developers, promoting the development and growth of the CKB ecosystem.
 
 We look forward to the community's support and feedback, let's work together to contribute to the prosperity and health of the CKB ecosystem!
+
