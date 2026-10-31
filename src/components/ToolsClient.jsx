@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import XudtLogoLoader from './XudtLogoLoader';
+import { SUBMIT_URL } from '@/lib/links';
 
 // Mirror of the normalization rule used by XudtLogoLoader. Kept in sync
 // deliberately; we do not import from the component because its file is
@@ -287,14 +288,27 @@ export default function ToolsClient() {
                 </span>
             </div>
 
+            <div className='flex flex-col gap-4 rounded-xl bg-wash p-5 md:p-6'>
+                <span className='font-semibold text-lg'>Submit a logo with the form (recommended)</span>
+                <span className='text-sm text-sub'>
+                    Project teams do not need git. Fill in the form on GitHub and drag in your logo. Within a minute a bot checks it, converts it to a square PNG of at most 512px, creates the thumbnail, verifies xUDT token data on CKB mainnet and opens a pull request. If something is wrong, it tells you on the issue; edit the issue and it runs again.
+                </span>
+                <ol className='flex list-decimal flex-col gap-1 pl-5 text-sm'>
+                    <li>Open the form and choose “Add a new logo” or “Replace an existing logo”.</li>
+                    <li>Fill in the name, attach the image and, for xUDT tokens, the type script args and decimals.</li>
+                    <li>Wait for the bot’s comment. A maintainer reviews the pull request and merges it; the logo goes live automatically.</li>
+                </ol>
+                <a href={SUBMIT_URL} target='_blank' rel='noopener noreferrer' className='self-start btn-primary'>Open the submission form →</a>
+            </div>
+
             <LogoExistenceChecker />
             <FilenameGenerator />
             <BatchFilenameGenerator />
 
             <div className='flex flex-col gap-4 border-t border-line pt-8'>
-                <span className='font-semibold text-lg'>How to submit a logo PR</span>
+                <span className='font-semibold text-lg'>Advanced: submit a pull request yourself</span>
                 <span className='text-sm text-sub'>
-                    xudtlogos uses the standard GitHub fork-and-PR workflow. GitHub's direct web-upload will be rejected with <code className='inline-code'>Uploads are disabled</code> for non-committers, so you need to fork the repo first and push from your own fork. Project teams typically have a developer who is comfortable with this flow; it takes about five minutes.
+                    Prefer git? xudtlogos also accepts the standard GitHub fork-and-PR workflow; the Logo check bot comments on your pull request with the same checks. GitHub's direct web-upload will be rejected with <code className='inline-code'>Uploads are disabled</code> for non-committers, so you need to fork the repo first and push from your own fork. Project teams typically have a developer who is comfortable with this flow; it takes about five minutes.
                 </span>
 
                 <div className='flex flex-col gap-2'>

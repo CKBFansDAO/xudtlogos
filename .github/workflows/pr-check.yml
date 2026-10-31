@@ -1,0 +1,95 @@
+# Checks logo and token files in every pull request, including from forks,
+# and posts the result as a comment. The PR's files are only read as data:
+# the scripts that run come from the base branch.
+name: Logo check
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: logo-check-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    if: >-
+      !contains(fromJSON('["labeled","unlabeled"]'), github.event.action) ||
+      github.event.label.name == 'allow-logo-removal'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out trusted scripts (base branch)
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: base
+          persist-credentials: false
+
+      - name: Check out pull request files (data only)
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: head
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: base/package-lock.json
+
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+        working-directory: base
+
+      - name: List changed files
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              ...context.repo, pull_number: context.payload.pull_request.number, per_page: 100,
+            });
+            require('fs').writeFileSync('files.json', JSON.stringify(files.map(({ filename, status, previous_filename }) => ({ filename, status, previous_filename }))));
+
+      - name: Run checks
+        env:
+          LABELS: ${{ join(github.event.pull_request.labels.*.name, ',') }}
+          RAW: https://raw.githubusercontent.com/${{ github.event.pull_request.head.repo.full_name }}/${{ github.event.pull_request.head.sha }}/
+        run: |
+          node base/scripts/check-pr.mjs --base base --head head --files files.json \
+            --labels "$LABELS" --raw "$RAW" --out report.md --json result.json || true
+
+      - name: Comment and label
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const result = JSON.parse(fs.readFileSync('result.json', 'utf8'));
+            const report = fs.readFileSync('report.md', 'utf8');
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+            const MARKER = '<!-- xudtlogos-check -->';
+            const relevant = result.labels.some((l) => ['logo', 'token-info'].includes(l));
+
+            const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number });
+            const mine = comments.find((c) => c.user.type === 'Bot' && c.body.includes(MARKER));
+            if (relevant || mine) {
+              if (mine) await github.rest.issues.updateComment({ owner, repo, comment_id: mine.id, body: report });
+              else await github.rest.issues.createComment({ owner, repo, issue_number, body: report });
+            }
+
+            const colors = { logo: '2F7FC1', 'token-info': '0E8A16', 'changes-existing-logo': 'D93F0B', 'site-code': '5319E7', 'checks-passed': '0E8A16', 'checks-failed': 'B60205' };
+            const labels = relevant ? result.labels : result.labels.filter((l) => l === 'site-code');
+            for (const name of labels) {
+              try { await github.rest.issues.createLabel({ owner, repo, name, color: colors[name] || 'BFDADC' }); } catch {}
+            }
+            if (labels.length) await github.rest.issues.addLabels({ owner, repo, issue_number, labels });
+            const stale = result.ok ? 'checks-failed' : 'checks-passed';
+            try { await github.rest.issues.removeLabel({ owner, repo, issue_number, name: stale }); } catch {}
+
+            if (!result.ok) core.setFailed(`${result.errors.length} problem(s) found. See the comment on the pull request.`);

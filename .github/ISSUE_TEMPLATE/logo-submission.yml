@@ -1,0 +1,116 @@
+name: Submit or update a logo
+description: Add your xUDT token or DOB logo to xudtlogos.cc. No git needed; a bot prepares the pull request for you.
+title: "[Logo] "
+labels: ["logo-submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Fill in this form and attach your logo. Within a minute a bot checks the file, fixes size and format where it can, and opens a pull request. A maintainer then reviews and merges it.
+        If something needs fixing, the bot comments here. **Edit this issue** to fix it and the bot runs again.
+
+        Logo requirements: square, at least 128×128px (256×256 recommended), transparent background, no extra text or borders. PNG preferred; JPEG and WebP are converted automatically.
+  - type: dropdown
+    id: request
+    attributes:
+      label: Request
+      options:
+        - Add a new logo
+        - Replace an existing logo
+    validations:
+      required: true
+  - type: dropdown
+    id: asset_type
+    attributes:
+      label: Asset type
+      options:
+        - xUDT token
+        - DOB / Spore cluster
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: Display name
+      description: How the asset is named on the site, e.g. "Seal" or "Nervape 3D".
+    validations:
+      required: true
+  - type: input
+    id: symbol
+    attributes:
+      label: Token symbol
+      description: Required for xUDT tokens, e.g. "SEAL".
+  - type: textarea
+    id: png
+    attributes:
+      label: Logo image
+      description: Drag and drop your logo image into this box (PNG, JPEG or WebP, at least 128×128px).
+    validations:
+      required: true
+  - type: textarea
+    id: svg
+    attributes:
+      label: SVG version (optional)
+      description: Drag and drop an SVG file if you have a vector version. Maximum 50 KB, no scripts or external references.
+  - type: input
+    id: type_args
+    attributes:
+      label: xUDT type script args
+      description: For standard xUDT tokens. The 0x… args of the token's type script. The bot fills in the code hash, type hash and cell dep and verifies them on mainnet.
+      placeholder: 0x2ae639d6233f9b15545573b8e78f38ff7aa6c7bf8ef6460bf1f12d0a76c09c4e
+  - type: textarea
+    id: custom_script
+    attributes:
+      label: Custom type script (advanced)
+      description: Only for tokens that do not use the standard xUDT script. JSON with "typeScript" and "typeCellDep" in the same format as token_list.json.
+      render: json
+  - type: input
+    id: decimals
+    attributes:
+      label: Decimals
+      description: Required for xUDT tokens, e.g. 8.
+  - type: input
+    id: website
+    attributes:
+      label: Official website
+      placeholder: https://
+  - type: input
+    id: twitter
+    attributes:
+      label: X / Twitter
+      placeholder: https://x.com/…
+  - type: input
+    id: telegram
+    attributes:
+      label: Telegram
+      placeholder: https://t.me/…
+  - type: input
+    id: discord
+    attributes:
+      label: Discord
+      placeholder: https://discord.gg/…
+  - type: input
+    id: github
+    attributes:
+      label: GitHub
+      placeholder: https://github.com/…
+  - type: input
+    id: logo_key
+    attributes:
+      label: Logo file name (advanced)
+      description: Leave empty to use the symbol (xUDT) or display name (DOB). This is what DApps pass to XudtLogoLoader.
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes for the reviewers
+      description: Anything that helps us confirm you represent the project, e.g. a post from the official account.
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmation
+      options:
+        - label: I represent this project or have permission to publish this logo.
+          required: true
+        - label: The logo may be used by wallets, explorers and DApps to display this asset.
+          required: true

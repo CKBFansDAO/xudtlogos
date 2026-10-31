@@ -1,0 +1,135 @@
+# Turns a "Submit or update a logo" issue into a pull request.
+# Runs on the default branch's code only; issue content is treated as data.
+name: Logo submission
+
+on:
+  issues:
+    types: [opened, edited, reopened, labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: logo-submission-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  process:
+    if: >-
+      github.event.issue.state == 'open' &&
+      github.event.issue.user.type != 'Bot' &&
+      contains(github.event.issue.labels.*.name, 'logo-submission') &&
+      (github.event.action != 'labeled' || github.event.label.name == 'logo-submission')
+    runs-on: ubuntu-latest
+    env:
+      ISSUE_NUMBER: ${{ github.event.issue.number }}
+      BRANCH: logo-submission/issue-${{ github.event.issue.number }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+
+      - name: Check and prepare the logo
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          node scripts/process-submission.mjs \
+            --event "$GITHUB_EVENT_PATH" \
+            --out "$RUNNER_TEMP/result.json" \
+            --raw "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${BRANCH}/"
+
+      - name: Commit to the submission branch
+        id: commit
+        env:
+          AUTHOR_LOGIN: ${{ github.event.issue.user.login }}
+          AUTHOR_ID: ${{ github.event.issue.user.id }}
+        run: |
+          if [ "$(jq -r .ok "$RUNNER_TEMP/result.json")" != "true" ]; then
+            echo "pushed=false" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -C "$BRANCH"
+          jq -r '.files[]' "$RUNNER_TEMP/result.json" | while IFS= read -r f; do git add -- "$f"; done
+          {
+            jq -r .title "$RUNNER_TEMP/result.json"
+            echo
+            echo "Submitted in #${ISSUE_NUMBER}."
+            echo
+            echo "Co-authored-by: ${AUTHOR_LOGIN} <${AUTHOR_ID}+${AUTHOR_LOGIN}@users.noreply.github.com>"
+          } > "$RUNNER_TEMP/msg.txt"
+          if git diff --cached --quiet; then
+            echo "pushed=unchanged" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          git commit -F "$RUNNER_TEMP/msg.txt"
+          git push --force origin "$BRANCH"
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Open or update the pull request and report back
+        uses: actions/github-script@v7
+        env:
+          PUSHED: ${{ steps.commit.outputs.pushed }}
+        with:
+          script: |
+            const fs = require('fs');
+            const result = JSON.parse(fs.readFileSync(`${process.env.RUNNER_TEMP}/result.json`, 'utf8'));
+            const { owner, repo } = context.repo;
+            const issue_number = context.issue.number;
+            const branch = process.env.BRANCH;
+            const MARKER = '<!-- xudtlogos-check -->';
+
+            const ensureLabels = async (names) => {
+              const colors = { logo: '2F7FC1', 'token-info': '0E8A16', 'changes-existing-logo': 'D93F0B', 'needs-info': 'FBCA04', 'pr-opened': 'C5DEF5' };
+              for (const name of names) {
+                try { await github.rest.issues.createLabel({ owner, repo, name, color: colors[name] || 'BFDADC' }); } catch {}
+              }
+            };
+            const sticky = async (number, body) => {
+              const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number: number });
+              const mine = comments.find((c) => c.user.type === 'Bot' && c.body.includes(MARKER));
+              if (mine) await github.rest.issues.updateComment({ owner, repo, comment_id: mine.id, body });
+              else await github.rest.issues.createComment({ owner, repo, issue_number: number, body });
+            };
+            const removeLabel = async (name) => { try { await github.rest.issues.removeLabel({ owner, repo, issue_number, name }); } catch {} };
+
+            if (result.ok && process.env.PUSHED === 'unchanged') {
+              await sticky(issue_number, `${result.report}\n\nThe submitted files are identical to what is already on xudtlogos.cc, so there is nothing to change.`);
+              return;
+            }
+            if (!result.ok || process.env.PUSHED !== 'true') {
+              await ensureLabels(['needs-info']);
+              await github.rest.issues.addLabels({ owner, repo, issue_number, labels: ['needs-info'] });
+              await removeLabel('pr-opened');
+              await sticky(issue_number, `${result.report}\n\n**Edit this issue to fix the problems above.** The check runs again automatically after each edit.`);
+              return;
+            }
+
+            const body = [
+              `Closes #${issue_number}`,
+              '',
+              result.report,
+              '',
+              '---',
+              'Opened automatically from the submission form. Netlify posts a deploy preview below; open it and check the logo page before merging.',
+            ].join('\n');
+            await ensureLabels(result.labels.concat(['pr-opened']));
+            const existing = await github.rest.pulls.list({ owner, repo, head: `${owner}:${branch}`, state: 'open' });
+            let pr = existing.data[0];
+            if (pr) {
+              await github.rest.pulls.update({ owner, repo, pull_number: pr.number, title: result.title, body });
+            } else {
+              pr = (await github.rest.pulls.create({ owner, repo, head: branch, base: context.payload.repository.default_branch, title: result.title, body })).data;
+            }
+            await github.rest.issues.addLabels({ owner, repo, issue_number: pr.number, labels: result.labels });
+            await github.rest.issues.addLabels({ owner, repo, issue_number, labels: ['pr-opened'] });
+            await removeLabel('needs-info');
+            await sticky(issue_number, `${result.report}\n\nThanks! Pull request #${pr.number} is ready for review. You can still edit this issue; the pull request is updated automatically.`);

@@ -104,6 +104,10 @@ See the FAQs page for the full copy-pasteable `XudtLogoLoader` implementation.
 - Facilitate cooperation and communication between xUDT project owners and DApp developers, promoting the development and growth of the CKB ecosystem.
 
 We look forward to the community's support and feedback, let's work together to contribute to the prosperity and health of the CKB ecosystem!
+## Submitting a logo
+
+Use the [submission form](https://github.com/CKBFansDAO/xudtlogos/issues/new?template=logo-submission.yml). A bot validates the file, converts it to the specification, verifies xUDT data on CKB mainnet and opens a pull request for review. Pull requests made by hand get the same checks. Maintainers: see [MAINTAINING.md](MAINTAINING.md).
+
 ## Development
 
 The site is a fully static [Next.js](https://nextjs.org) app (`output: 'export'`) styled with Tailwind CSS. Requires Node.js 20+.
@@ -113,6 +117,7 @@ npm install
 npm run dev          # http://localhost:3000
 npm run build        # static site in ./out
 npm run check:logos  # report logos that do not meet the specification
+npm test             # unit tests for the submission rules
 ```
 
 - Every `public/logos/{symbol}-logo.png` automatically gets a listing entry and a page at `/{symbol}`. Add an entry to `src/assets/xudts.json` to mark an asset as an xUDT token and set its display name.

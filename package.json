@@ -7,12 +7,14 @@
     "build": "npm run previews && next build",
     "start": "npx serve@14 out",
     "previews": "node scripts/generate-previews.mjs",
-    "check:logos": "node scripts/check-logos.mjs"
+    "check:logos": "node scripts/check-logos.mjs",
+    "test": "node --test scripts/__tests__/rules.test.mjs"
   },
   "engines": {
     "node": ">=20"
   },
   "devDependencies": {
+    "@noble/hashes": "^1.8.0",
     "@tailwindcss/typography": "^0.5.20",
     "autoprefixer": "^10.6.2",
     "postcss": "^8.5.32",

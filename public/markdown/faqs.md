@@ -1,3 +1,17 @@
+### What is the fastest way to submit or update a logo?
+
+Use the **[Submit or update a logo](https://github.com/CKBFansDAO/xudtlogos/issues/new?template=logo-submission.yml)** form. You need a GitHub account but no git.
+
+1. Choose **Add a new logo** or **Replace an existing logo** and fill in the name.
+2. Drag your logo into the **Logo image** box. PNG, JPEG or WebP, square, at least 128×128px, transparent background.
+3. For xUDT tokens, also give the **type script args** and **decimals**. The bot fills in the code hash, type hash and cell dep and checks that the token exists on CKB mainnet.
+4. Submit. Within a minute a bot comments on the issue:
+   - ✅ it converted the file (square PNG, at most 512px, plus a 100×100 thumbnail) and opened a pull request, or
+   - ❌ it lists what to fix. Edit the issue and the bot runs again.
+5. A maintainer checks that you represent the project and merges. The logo is live on `https://xudtlogos.cc/logos/{symbol}-logo.png` a few minutes later.
+
+The manual fork-and-pull-request workflow below still works and gets the same automated checks.
+
 ### For xUDT project owners: how do I submit and manage my token logo through the xudtlogos portal?
 
 **xudtlogos is the unified logo portal for xUDT assets on CKB.** As a project owner, you use it to publish your token's logo so that DApps, wallets, and explorers across the ecosystem can render it consistently. This section is the end-to-end lifecycle — everything a project owner needs from first submission to ongoing management.

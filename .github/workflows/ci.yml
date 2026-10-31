@@ -1,0 +1,26 @@
+# Tests and builds the site for every pull request (read-only, safe for forks).
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm test
+      - run: npm run build
+      - name: Logo specification report (informational)
+        run: |
+          { echo '### Logo specification report'; echo '```'; npm run -s check:logos || true; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
