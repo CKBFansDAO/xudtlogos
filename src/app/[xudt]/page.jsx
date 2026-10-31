@@ -5,7 +5,7 @@ import LogoImg from '@/components/LogoImg';
 import CodeBlock from '@/components/CodeBlock';
 import CopyButton from '@/components/CopyButton';
 import { getAllLogos, getLogo, pagePath, pngUrl, svgUrl, SPEC } from '@/lib/logos';
-import { DONATION_ADDRESS, FORK_URL, ISSUES_URL } from '@/lib/links';
+import { DONATION_ADDRESS, ISSUES_URL, updateUrl } from '@/lib/links';
 
 export const dynamicParams = false;
 
@@ -131,7 +131,7 @@ export default async function LogoPage({ params }) {
             ) : (
               <div className="card flex flex-col justify-center gap-2 border-dashed p-4 text-sm text-sub">
                 <span className="font-semibold text-ink">No SVG yet</span>
-                <span>Have a vector version? Add <code className="inline-code">{logo.slug}-logo.svg</code> with a pull request.</span>
+                <span>Have a vector version? <a className="font-semibold text-brand" href={updateUrl(logo)} target="_blank" rel="noopener noreferrer">Send it with the update form</a>.</span>
               </div>
             )}
           </div>
@@ -147,7 +147,7 @@ export default async function LogoPage({ params }) {
                   {logo.issues.map((i) => <li key={i}>{i}</li>)}
                   {logo.notes.map((i) => <li key={i}>{i}</li>)}
                 </ul>
-                <span className="text-xs text-sub">The logo still works at its URL. Owners can send an optimised file with a pull request.</span>
+                <span className="text-xs text-sub">The logo still works at its URL. Owners can <a className="font-semibold text-brand" href={updateUrl(logo)} target="_blank" rel="noopener noreferrer">send an optimised file</a>; the bot resizes and converts it automatically.</span>
               </div>
             )}
           </div>
@@ -193,12 +193,11 @@ export default async function LogoPage({ params }) {
         <div className="flex flex-col gap-3">
           <h2 id="contrib-heading" className="text-lg font-bold">Update or report this logo</h2>
           <p className="text-sm leading-relaxed text-sub">
-            Logos are added and changed through pull requests on GitHub. If you own this brand and the logo is wrong, open a pull request with the new file, or an issue if you cannot.
+            If you own this asset and the logo is wrong or outdated, send a new file with the update form. No git is needed: a bot checks the file and prepares the change for review.
           </p>
           <div className="flex flex-wrap gap-2">
-            <a className="btn-primary" href={FORK_URL} target="_blank" rel="noopener noreferrer">Fork &amp; submit a PR</a>
-            <a className="btn-ghost" href={ISSUES_URL} target="_blank" rel="noopener noreferrer">Open an issue</a>
-            <Link className="btn-ghost" href="/tools">Open Tools</Link>
+            <a className="btn-primary" href={updateUrl(logo)} target="_blank" rel="noopener noreferrer">Update this logo</a>
+            <a className="btn-ghost" href={ISSUES_URL} target="_blank" rel="noopener noreferrer">Report a problem</a>
           </div>
         </div>
         <div className="flex min-w-0 flex-col gap-3">

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import LogoImg from './LogoImg';
 import CopyButton from './CopyButton';
-import { pagePath, pngUrl } from '@/lib/links';
+import { pagePath, pngUrl, SUBMIT_URL } from '@/lib/links';
 
 const TYPES = [
   { key: 'all', label: 'All' },
@@ -192,13 +192,13 @@ export default function LogoBrowser({ logos }) {
           <div className="card flex flex-col items-center gap-3 px-6 py-14 text-center">
             <p className="font-semibold">No logo matches “{q}”.</p>
             <p className="max-w-md text-sm text-sub">
-              Check the canonical file name with the Tools page. If the asset is yours, you can add its logo with a pull request.
+              If the asset is yours, submit its logo with the form. It takes a minute and needs no git.
             </p>
             <div className="flex flex-wrap justify-center gap-2">
               <button type="button" onClick={() => { setQ(''); setType('all'); setSvgOnly(false); }} className="btn-ghost">
                 Clear filters
               </button>
-              <Link href="/tools" className="btn-primary">Open Tools</Link>
+              <a href={SUBMIT_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">Submit a logo</a>
             </div>
           </div>
         )}

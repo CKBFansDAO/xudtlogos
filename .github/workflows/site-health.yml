@@ -1,0 +1,58 @@
+# Verifies that xudtlogos.cc serves every logo in the repository.
+# Runs daily and after every merge; opens an issue when something breaks
+# and closes it again when the site recovers.
+name: Site health
+
+on:
+  schedule:
+    - cron: '17 3 * * *'
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: site-health
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check live site
+        id: health
+        run: |
+          WAIT=""
+          if [ "$GITHUB_EVENT_NAME" = "push" ]; then WAIT="--wait-for-deploy"; fi
+          if node scripts/site-health.mjs $WAIT --out report.md; then echo "ok=true" >> "$GITHUB_OUTPUT"; else echo "ok=false" >> "$GITHUB_OUTPUT"; fi
+          cat report.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Open, update or close the health issue
+        uses: actions/github-script@v7
+        env:
+          OK: ${{ steps.health.outputs.ok }}
+        with:
+          script: |
+            const report = require('fs').readFileSync('report.md', 'utf8');
+            const { owner, repo } = context.repo;
+            const label = 'site-health';
+            try { await github.rest.issues.createLabel({ owner, repo, name: label, color: 'B60205' }); } catch {}
+            const open = (await github.rest.issues.listForRepo({ owner, repo, labels: label, state: 'open' })).data;
+            const run = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
+            if (process.env.OK === 'true') {
+              for (const i of open) {
+                await github.rest.issues.createComment({ owner, repo, issue_number: i.number, body: `Recovered. ${report}\n\n${run}` });
+                await github.rest.issues.update({ owner, repo, issue_number: i.number, state: 'closed' });
+              }
+              return;
+            }
+            const body = `${report}\n\nRun: ${run}`;
+            if (open[0]) await github.rest.issues.createComment({ owner, repo, issue_number: open[0].number, body });
+            else await github.rest.issues.create({ owner, repo, title: 'xudtlogos.cc is not serving some logos', labels: [label], body });
+            core.setFailed('Site health check failed.');

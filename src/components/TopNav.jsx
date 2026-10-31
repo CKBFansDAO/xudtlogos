@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { REPO_URL } from '@/lib/links';
+import { REPO_URL, SUBMIT_URL } from '@/lib/links';
 
 const NAV = [
   { name: 'Logos', href: '/' },
@@ -37,6 +37,14 @@ export default function TopNav() {
               {item.name}
             </Link>
           ))}
+          <a
+            href={SUBMIT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-1 whitespace-nowrap rounded-md bg-brand px-2.5 py-1.5 text-xs font-semibold text-white hover:bg-brand-dark"
+          >
+            Submit logo
+          </a>
           <a
             href={REPO_URL}
             target="_blank"
