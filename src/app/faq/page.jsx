@@ -35,7 +35,7 @@ export default function FaqPage() {
           </ol>
         </nav>
       </aside>
-      <article className="prose prose-slate min-w-0 max-w-none prose-headings:scroll-mt-20 prose-h3:mt-12 prose-h3:border-t prose-h3:border-line prose-h3:pt-8 prose-h3:text-xl prose-a:text-brand prose-code:before:content-none prose-code:after:content-none prose-code:rounded prose-code:bg-wash prose-code:px-1 prose-code:py-0.5 prose-code:font-normal prose-pre:bg-ink prose-pre:text-[#CFE3F5] prose-table:block prose-table:overflow-x-auto [&>h3:first-child]:mt-0 [&>h3:first-child]:border-0 [&>h3:first-child]:pt-0">
+      <article className="prose prose-slate min-w-0 max-w-none prose-headings:scroll-mt-20 prose-h3:mt-12 prose-h3:border-t prose-h3:border-line prose-h3:pt-8 prose-h3:text-xl prose-a:text-brand prose-code:before:content-none prose-code:after:content-none prose-code:rounded prose-code:bg-wash prose-code:px-1 prose-code:py-0.5 prose-code:font-normal prose-pre:bg-ink prose-pre:text-[#CFE3F5] [&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_pre_code]:[color:inherit] [&_pre_code]:rounded-none prose-table:block prose-table:overflow-x-auto [&>h3:first-child]:mt-0 [&>h3:first-child]:border-0 [&>h3:first-child]:pt-0">
         <Markdown
           remarkPlugins={[remarkGfm]}
           components={{
