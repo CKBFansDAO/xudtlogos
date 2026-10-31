@@ -122,7 +122,7 @@ git checkout -b add-<asset>-logo
 
 ```bash
 npm install
-npm start
+npm run dev
 ```
 
 6. Commit and push to your fork, then open a pull request against `CKBFansDAO/xudtlogos:master`:

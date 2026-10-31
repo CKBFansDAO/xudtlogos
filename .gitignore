@@ -23,3 +23,10 @@ yarn-debug.log*
 yarn-error.log*
 
 .codegpt
+# next.js
+/.next
+/out
+next-env.d.ts
+
+# generated at build time by scripts/generate-previews.mjs
+/public/previews

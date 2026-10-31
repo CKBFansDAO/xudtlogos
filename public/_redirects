@@ -1,1 +1,14 @@
-/*    /index.html   200
+# Compatibility with the previous single-page app.
+#
+# Before the Next.js migration every unknown path was rewritten to
+# /index.html with status 200 (`/* /index.html 200`). Existing DApps may
+# depend on that for missing asset files (e.g. a logo that was never
+# uploaded), so the same behaviour is kept for the asset folders below.
+# Rewrites never apply when the file exists, so real logos are unaffected.
+#
+# Unknown *page* paths now get the 404 page (out/404.html).
+/logos/*     /index.html   200
+/tokens/*    /index.html   200
+/dob/*       /index.html   200
+/banners/*   /index.html   200
+/markdown/*  /index.html   200

@@ -104,3 +104,18 @@ See the FAQs page for the full copy-pasteable `XudtLogoLoader` implementation.
 - Facilitate cooperation and communication between xUDT project owners and DApp developers, promoting the development and growth of the CKB ecosystem.
 
 We look forward to the community's support and feedback, let's work together to contribute to the prosperity and health of the CKB ecosystem!
+## Development
+
+The site is a fully static [Next.js](https://nextjs.org) app (`output: 'export'`) styled with Tailwind CSS. Requires Node.js 20+.
+
+```bash
+npm install
+npm run dev          # http://localhost:3000
+npm run build        # static site in ./out
+npm run check:logos  # report logos that do not meet the specification
+```
+
+- Every `public/logos/{symbol}-logo.png` automatically gets a listing entry and a page at `/{symbol}`. Add an entry to `src/assets/xudts.json` to mark an asset as an xUDT token and set its display name.
+- Everything in `public/` (logos, thumbnails, `tokens/token_list.json`, `llms.txt`) is copied to the build output unchanged, so all existing logo URLs stay the same.
+- Small listing previews are generated into `public/previews/` (git-ignored) at dev/build time; original files are never modified.
+- Netlify settings live in `netlify.toml` (build `npm run build`, publish `out`).
