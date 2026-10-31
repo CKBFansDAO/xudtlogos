@@ -1,0 +1,11 @@
+# Static hosting only. `next build` (output: 'export') writes the site to ./out,
+# and every file in public/ — including /logos/** and /tokens/token_list.json —
+# is copied there byte-for-byte, so existing logo URLs are unchanged.
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "20"
+  # Serve the exported files as-is; do not run the Next.js server runtime.
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
